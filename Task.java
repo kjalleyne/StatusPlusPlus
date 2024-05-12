@@ -34,6 +34,14 @@ public class Task {
     }
 
     /**
+     * Method to set the task ID.
+     * @param id Task ID.
+     */
+    public void setId(int id) {
+        taskId = id;
+    }
+
+    /**
      * Method to get task category.
      * @return Task category.
      */
@@ -42,11 +50,27 @@ public class Task {
     }
 
     /**
+     * Method to set task category.
+     * @param category Task category.
+     */
+    public void setCategory(TaskCategory category) {
+        taskCategory = category;
+    }
+
+    /**
      * Method to get task name.
      * @return Task name.
      */
     public String getName() {
         return taskName;
+    }
+
+    /**
+     * Method to set task name.
+     * @param name Task name.
+     */
+    public void setName(String name) {
+        taskName = name;
     }
 
     @Override

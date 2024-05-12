@@ -1,3 +1,6 @@
+/**
+ * Class for a task object
+ */
 public class Task {
 
     // ---- Fields ----

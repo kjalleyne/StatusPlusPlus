@@ -84,6 +84,7 @@ public class Task {
             "Task ID: " + taskId
             + "\nCategory: " + taskCategory
             + "\nName: " + taskName
+            + "\nExp Gained: " + expGained
         ;
 
         // Return string

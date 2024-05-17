@@ -1,4 +1,7 @@
+import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
 
@@ -7,7 +10,7 @@ public class Database {
      */
     private static final String URL = "jdbc:mysql://localhost:3306/380Project"; 
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "cs380";
+    private static final String PASSWORD = "livelikejay75!!";
 
     /**
      * Connects to the database.
@@ -122,5 +125,78 @@ public class Database {
             return false;
         }
     }
-    
+
+    /**
+     * Adds a new Task to the database.
+     * @param expGained The amount of exp gained by completing the task. Type: Integer
+     * @param taskName  The name of the task (must be unique, or this will fail). Type: String
+     * @param category The category number of the task. Type: Integer
+     */
+    public void addTask(int expGained, String taskName, int category){
+        String sql = "INSERT INTO tasks (expGained, taskName, category) VALUES (?, ?, ?)";
+        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, expGained);
+            pstmt.setString(2, taskName);
+            pstmt.setInt(3, category);
+            pstmt.executeUpdate();
+            System.out.println("Task added successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error adding task: " + e.getMessage());
+        }
+    }
+
+    public void assignUserTask(int userID, int taskID){
+        String sql = "INSERT INTO usertasks (userIDTasks, taskID) VALUES (?,?)";
+        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userID);
+            pstmt.setInt(2, taskID);
+            pstmt.executeUpdate();
+            System.out.println("Added task to user-tasks table!");
+        } catch (SQLException e) {
+            System.out.println("Error adding to user-tasks table: " + e.getMessage());
+        }
+    }
+
+
+    /**
+     * A function to get all of the tasks for a user.
+     * @param userID The userID of the user you are trying to get the task list of. Type: Integer
+     * @return  List of Tasks that belong to the user.
+     */
+    public List<Task> getAllUserTasks(int userID){
+        List<Task> tasks = new ArrayList<>();
+
+        String sql = "SELECT tasks.* " +
+                "FROM tasks " +
+                "JOIN userTasks ON tasks.taskID = userTasks.taskID " +
+                "WHERE userTasks.userIDTasks = ?";
+        try(Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, userID);
+            System.out.println("Successfully retrieved users tasks. Returning as ResultSet. ");
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()){
+                // Get all the fields of a task
+                int id = rs.getInt("taskID");
+                int xp = rs.getInt("expGained");
+                String name = rs.getString("taskName");
+                int catVal = rs.getInt("category");
+                TaskCategory category = TaskCategory.fromInt(catVal);
+
+                // Try to rebuild the task
+                Task t = new Task(id, xp,category ,name);
+
+                // Add the task to the result list
+                tasks.add(t);
+            }
+        }catch (SQLException e){
+            System.out.println("Failed to retrieve users tasks: " + e.getMessage());
+        }
+
+        return tasks;
+    }
+
+    public void removeUserTask(){
+
+    }
 }

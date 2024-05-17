@@ -9,6 +9,8 @@ public class Task {
     private TaskCategory taskCategory;
     private String taskName;
 
+    private int expGained;
+
     // ---- Constructors ----
 
     /**
@@ -17,10 +19,11 @@ public class Task {
      * @param taskCategory Task category.
      * @param taskName Task name.
      */
-    public Task(int taskId, TaskCategory taskCategory, String taskName) {
+    public Task(int taskId, int expGained, TaskCategory taskCategory, String taskName) {
         this.taskId = taskId;
         this.taskCategory = taskCategory;
         this.taskName = taskName;
+        this.expGained = expGained;
     }
 
     // ---- Methods ----
@@ -81,6 +84,7 @@ public class Task {
             "Task ID: " + taskId
             + "\nCategory: " + taskCategory
             + "\nName: " + taskName
+            + "\nExp Gained: " + expGained
         ;
 
         // Return string

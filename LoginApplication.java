@@ -51,6 +51,29 @@ public class LoginApplication {
             System.out.println("----------");
         }
 
+        /*
+            We will now remove a task from the usertasks associative table, and reprint all the tasks that belong
+            to user with id = 1.
+         */
+        databaseManager.removeUserTask(1, 1);
+
+        tasks = databaseManager.getAllUserTasks(1);
+        for(Task t: tasks){
+            System.out.println(t);
+            System.out.println("----------");
+        }
+
+        // Example of how to increase the stats of a user, (userID, increaseByAmount)
+        databaseManager.increaseUserINT(1, 1);
+        databaseManager.increaseUserEND(1, 2);
+        databaseManager.increaseUserSTR(1, 4);
+        databaseManager.increaseUserWIS(1, 100);
+        databaseManager.increaseUserVIT(1, 10);
+        databaseManager.increaseUserSkillPoints(1, 10);
+        databaseManager.increaseUserEXP(1, -1001);
+
+        databaseManager.resetUserEXP(1);
+
         scanner.close();
     }
 }

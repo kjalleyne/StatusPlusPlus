@@ -36,7 +36,7 @@ public enum TaskCategory {
      * @return The taskCategory that the value is equal to.
      * @throws IllegalArgumentException If the value is outside of enum domain, this is thrown.
      */
-    public static TaskCategory fromInt(int value) {
+    public static TaskCategory fromInt(int value) throws IllegalArgumentException {
         for (TaskCategory category : TaskCategory.values()) {
             if (category.getValue() == value) {
                 return category;

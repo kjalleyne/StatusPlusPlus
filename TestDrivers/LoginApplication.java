@@ -3,7 +3,6 @@ package TestDrivers;
 import Classes.Task;
 import Classes.TaskCategory;
 import DatabaseModels.Database;
-import Classes.*;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -75,6 +74,12 @@ public class LoginApplication {
         databaseManager.increaseUserEXP(1, -1001);
 
         databaseManager.resetUserEXP(1);
+
+        // Example of how to get a skill level of a user.
+        // To get other skill levels, use the appropriate enum ex. TaskCategory.WIS, TaskCategory.STR, etc
+        int stat = databaseManager.getSkillLevel(1, TaskCategory.VIT);
+        System.out.println(stat);
+
 
         scanner.close();
     }

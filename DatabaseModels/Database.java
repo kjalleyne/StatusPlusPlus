@@ -13,7 +13,7 @@ public class Database {
      */
     private static final String URL = "jdbc:mysql://localhost:3306/380Project"; 
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "livelikejay75!!";
+    private static final String PASSWORD = "cs380";
 
     /**
      * Connects to the database.
@@ -467,5 +467,52 @@ public class Database {
         } catch (SQLException e) {
             System.out.println("Error resetting: " + e.getMessage());
         }
+    }
+
+    /**
+     * Gets one skill level of a user
+     * @param userID The user-id of the user to get a skill level from. Type: Integer
+     * @param t The skill category to get from the user. Type: TaskCategory Enum
+     * @return Skill level of specified skill category of the user. Type: Integer
+     */
+    public int getSkillLevel(int userID, TaskCategory t){
+        String stat = "";
+        switch(t){
+            case INT:
+                stat = "intelligence";
+                break;
+            case STR:
+                stat = "strength";
+                break;
+            case END:
+                stat = "endurance";
+                break;
+            case WIS:
+                stat = "wisdom";
+                break;
+            case VIT:
+                stat = "vitality";
+                break;
+            default:
+                throw new IllegalArgumentException("Function was not passed a valid task-category enum!");
+        }
+
+
+        String sql = "SELECT " + stat + " FROM userstats WHERE userIDStats = ?";
+        int skillLevel = Integer.MIN_VALUE;
+
+        try(Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1, userID);
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next()){
+                skillLevel = rs.getInt(1);
+            }
+
+        }catch (SQLException e){
+            System.out.println("Failed to retrieve users tasks: " + e.getMessage());
+        }
+
+        return skillLevel;
     }
 }

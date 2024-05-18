@@ -1,7 +1,7 @@
 package Classes;
 
 /**
- * Enum class containing task categories
+ * Enum class containing task categories. Also used for searching skill levels from database
  */
 public enum TaskCategory {
     INT(1),

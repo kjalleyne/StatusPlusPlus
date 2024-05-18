@@ -1,3 +1,5 @@
+package Classes;
+
 /**
  * Enum class containing task categories
  */

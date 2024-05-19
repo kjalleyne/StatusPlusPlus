@@ -89,7 +89,7 @@ DROP TABLE IF EXISTS `380Project`.`userTasks`;
 CREATE TABLE IF NOT EXISTS `380Project`.`userTasks` (
   `userIDTasks` INT NOT NULL,
   `taskID` INT NOT NULL,
-  PRIMARY KEY (`userIDTasks`, 'taskID'),
+  PRIMARY KEY (`userIDTasks`, `taskID`),
   INDEX `userTasksToTasks_idx` (`taskID` ASC) VISIBLE,
   CONSTRAINT `userTasksToUser`
     FOREIGN KEY (`userIDTasks`)

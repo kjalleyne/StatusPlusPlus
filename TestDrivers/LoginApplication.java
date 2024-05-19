@@ -65,11 +65,11 @@ public class LoginApplication {
         }
 
         // Example of how to increase the stats of a user, (userID, increaseByAmount)
-        databaseManager.increaseUserINT(1, 1);
-        databaseManager.increaseUserEND(1, 2);
-        databaseManager.increaseUserSTR(1, 4);
-        databaseManager.increaseUserWIS(1, 100);
-        databaseManager.increaseUserVIT(1, 10);
+        databaseManager.increaseUserStat(1, TaskCategory.INT, 1);
+        databaseManager.increaseUserStat(1, TaskCategory.END, 2);
+        databaseManager.increaseUserStat(1, TaskCategory.STR, 4);
+        databaseManager.increaseUserStat(1, TaskCategory.WIS, 100);
+        databaseManager.increaseUserStat(1, TaskCategory.VIT, 10);
         databaseManager.increaseUserSkillPoints(1, 10);
         databaseManager.increaseUserEXP(1, -1001);
 

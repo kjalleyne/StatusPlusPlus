@@ -7,17 +7,16 @@ public class Task {
 
     // ---- Fields ----
 
-    private int taskId;
+    private int taskId, expGained;
     private TaskCategory taskCategory;
     private String taskName;
-
-    private int expGained;
 
     // ---- Constructors ----
 
     /**
      * Constructor for Task class.
      * @param taskId Unique task identifier.
+     * @param expGained Experienced granted.
      * @param taskCategory Task category.
      * @param taskName Task name.
      */
@@ -44,6 +43,22 @@ public class Task {
      */
     public void setId(int id) {
         taskId = id;
+    }
+
+    /**
+     * Method to get experience gained.
+     * @return Gained experience.
+     */
+    public int getExpGained() {
+        return expGained;
+    }
+
+    /**
+     * Method to set experience gained.
+     * @param expGained Gained experience.
+     */
+    public void setExpGained(int expGained) {
+        this.expGained = expGained;
     }
 
     /**

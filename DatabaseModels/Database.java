@@ -378,28 +378,8 @@ public class Database {
      * @return Skill level of specified skill category of the user. Type: Integer
      */
     public int getSkillLevel(int userID, TaskCategory t){
-        String stat = "";
-        switch(t){
-            case INT:
-                stat = "intelligence";
-                break;
-            case STR:
-                stat = "strength";
-                break;
-            case END:
-                stat = "endurance";
-                break;
-            case WIS:
-                stat = "wisdom";
-                break;
-            case VIT:
-                stat = "vitality";
-                break;
-            default:
-                throw new IllegalArgumentException("Function was not passed a valid task-category enum!");
-        }
-
-
+        
+        String stat = t.getString();
         String sql = "SELECT " + stat + " FROM userstats WHERE userIDStats = ?";
         int skillLevel = Integer.MIN_VALUE;
 

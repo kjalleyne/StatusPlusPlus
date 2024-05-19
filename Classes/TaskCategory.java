@@ -4,21 +4,23 @@ package Classes;
  * Enum class containing task categories. Also used for searching skill levels from database
  */
 public enum TaskCategory {
-    INT(1),
-    STR(2),
-    END(3),
-    WIS(4),
-    VIT(5);
+    INT(1, "intelligence"),
+    STR(2, "strength"),
+    END(3, "endurance"),
+    WIS(4, "wisdom"),
+    VIT(5, "vitality");
 
     private final int value;
+    private final String string;
 
     /**
      * Private constructor, needed for assignment of Enum value directly.
      * Needed to do this to match the database 1 based indexing.
      * @param value The int assigned to the enum
      */
-    TaskCategory(int value) {
+    TaskCategory(int value, String string) {
         this.value = value;
+        this.string = string;
     }
 
     /**
@@ -27,6 +29,14 @@ public enum TaskCategory {
      */
     public int getValue() {
         return value;
+    }
+
+    /**
+     * Method to get String version of category.
+     * @return String version of category.
+     */
+    public String getString() {
+        return string;
     }
 
     /**

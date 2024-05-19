@@ -275,13 +275,15 @@ public class Database {
     =====================================================================================*/
 
     /**
-     * Modify a users intelligence by some value.
+     * Modify a specified user stat by a specified value.
      * @param userID The ID of user to change. Type: Integer
+     * @param userStat The user stat to change. Type: TaskCategory
      * @param increaseBy The amount to change by (can be negative). Type: Integer
      */
-    public void increaseUserINT(int userID, int increaseBy){
-        String sql = "UPDATE userstats SET intelligence = intelligence + ? WHERE userIDStats = ?";
+    public void increaseUserStat(int userID, TaskCategory userStat, int increaseBy) {
 
+        String stat = userStat.getString();
+        String sql = "UPDATE userstats SET " + stat + " = "  + stat +  " + ? WHERE userIDStats = ?";
 
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, increaseBy);
@@ -289,113 +291,13 @@ public class Database {
 
             int affectedRows = pstmt.executeUpdate();
             if (affectedRows > 0) {
-                System.out.println("Increased user intelligence.");
+                System.out.println("Increased user " + stat);
             } else {
                 System.out.println("No user found with ID: " + userID);
             }
 
         } catch (SQLException e) {
-            System.out.println("Error increasing intelligence: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Changes a users Strength stat
-     * @param userID The ID of user to change. Type: Integer
-     * @param increaseBy The amount to change by (can be negative). Type: Integer
-     */
-    public void increaseUserSTR(int userID, int increaseBy){
-        String sql = "UPDATE userstats SET strength = strength + ? WHERE userIDStats = ?";
-
-
-        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, increaseBy);
-            pstmt.setInt(2, userID);
-
-            int affectedRows = pstmt.executeUpdate();
-            if (affectedRows > 0) {
-                System.out.println("Increased user strength.");
-            } else {
-                System.out.println("No user found with ID: " + userID);
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error increasing strength: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Changes a users wisdom.
-     * @param userID The ID of user to change. Type: Integer
-     * @param increaseBy The amount to change by (can be negative). Type: Integer
-     */
-    public void increaseUserWIS(int userID, int increaseBy){
-        String sql = "UPDATE userstats SET wisdom = wisdom + ? WHERE userIDStats = ?";
-
-
-        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, increaseBy);
-            pstmt.setInt(2, userID);
-
-            int affectedRows = pstmt.executeUpdate();
-            if (affectedRows > 0) {
-                System.out.println("Increased user wisdom.");
-            } else {
-                System.out.println("No user found with ID: " + userID);
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error increasing wisdom: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Changes a users endurance.
-     * @param userID The ID of user to change. Type: Integer
-     * @param increaseBy The amount to change by (can be negative). Type: Integer
-     */
-    public void increaseUserEND(int userID, int increaseBy){
-        String sql = "UPDATE userstats SET endurance = endurance + ? WHERE userIDStats = ?";
-
-
-        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, increaseBy);
-            pstmt.setInt(2, userID);
-
-            int affectedRows = pstmt.executeUpdate();
-            if (affectedRows > 0) {
-                System.out.println("Increased user endurance.");
-            } else {
-                System.out.println("No user found with ID: " + userID);
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error increasing endurance: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Changes a users vitality.
-     * @param userID The ID of user to change. Type: Integer
-     * @param increaseBy The amount to change by (can be negative). Type: Integer
-     */
-    public void increaseUserVIT(int userID, int increaseBy){
-        String sql = "UPDATE userstats SET vitality = vitality + ? WHERE userIDStats = ?";
-
-
-        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, increaseBy);
-            pstmt.setInt(2, userID);
-
-            int affectedRows = pstmt.executeUpdate();
-            if (affectedRows > 0) {
-                System.out.println("Increased user vitality.");
-            } else {
-                System.out.println("No user found with ID: " + userID);
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error increasing vitality: " + e.getMessage());
+            System.out.println("Error increasing " + stat + ": " + e.getMessage());
         }
     }
 

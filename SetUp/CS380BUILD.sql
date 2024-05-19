@@ -111,6 +111,45 @@ INSERT INTO `380Project`.`categories` (`categoryName`) VALUES
 ('WIS'),
 ('VIT');
 
+-- Insert example values into users, userStats, tasks, and userTasks
+-- Insert test data into the users table
+INSERT INTO `380Project`.`users` (`userName`, `password`, `email`) VALUES
+('Alice', 'password123', 'alice@example.com'),
+('Bob', 'password123', 'bob@example.com'),
+('Charlie', 'password123', 'charlie@example.com'),
+('David', 'password123', 'david@example.com'),
+('Eve', 'password123', 'eve@example.com');
+
+-- Insert test data into the userStats table
+INSERT INTO `380Project`.`userStats` (`userIDStats`, `intelligence`, `strength`, `endurance`, `wisdom`, `vitality`, `skillpoints`, `exp`) VALUES
+(1, 10, 15, 12, 14, 13, 5, 100),
+(2, 12, 14, 13, 15, 10, 6, 200),
+(3, 14, 12, 10, 13, 15, 4, 150),
+(4, 15, 10, 14, 12, 12, 7, 250),
+(5, 13, 13, 15, 10, 14, 3, 300);
+
+-- Insert test data into the tasks table
+INSERT INTO `380Project`.`tasks` (`expGained`, `taskName`, `category`) VALUES
+(50, 'Complete Module 1', 1),
+(60, 'Run 5 miles', 2),
+(40, 'Meditate for 20 minutes', 4),
+(70, 'Lift weights', 2),
+(30, 'Read a book', 1),
+(50, 'Cook a healthy meal', 5);
+
+-- Insert test data into the userTasks table
+INSERT INTO `380Project`.`userTasks` (`userIDTasks`, `taskID`) VALUES
+(1, 1),
+(1, 3),
+(2, 2),
+(2, 5),
+(3, 1),
+(3, 6),
+(4, 2),
+(4, 4),
+(5, 3),
+(5, 5);
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

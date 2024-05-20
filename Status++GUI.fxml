@@ -87,25 +87,27 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="636.0" prefWidth="625.0" VBox.vgrow="ALWAYS">
       <children>
-            <ImageView fitHeight="636.0" fitWidth="653.0" preserveRatio="true">
+            <ImageView fitHeight="636.0" fitWidth="653.0">
                <image>
-                  <Image url="@../../Downloads/Frame%201.png" />
+                  <Image url="@../../Downloads/Frame%201%20(1).png" />
                </image>
             </ImageView>
-            <Button layoutX="537.0" layoutY="110.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Button layoutX="537.0" layoutY="208.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Button layoutX="537.0" layoutY="307.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Button layoutX="537.0" layoutY="406.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Button layoutX="537.0" layoutY="505.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Button layoutX="597.0" layoutY="268.0" mnemonicParsing="false" prefHeight="88.0" prefWidth="33.0" text="&gt;&gt;" />
-            <Text fill="WHITE" layoutX="189.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default username" wrappingWidth="116.13671875" />
-            <Text fill="WHITE" layoutX="146.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Streak" wrappingWidth="116.13671875" />
-            <Text fill="WHITE" layoutX="146.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
-            <Text fill="WHITE" layoutX="295.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
-            <Text fill="WHITE" layoutX="139.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
-            <Text fill="WHITE" layoutX="262.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
-            <Text fill="WHITE" layoutX="132.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
-            <TextArea layoutX="53.0" layoutY="454.0" prefHeight="131.0" prefWidth="249.0" />
+            <Button layoutX="551.0" layoutY="208.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+            <Button layoutX="613.0" layoutY="274.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="39.0" text="&gt;&gt;" />
+            <Text fill="WHITE" layoutX="194.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default username" wrappingWidth="116.13671875" />
+            <Text fill="WHITE" layoutX="148.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Streak" wrappingWidth="116.13671875" />
+            <Text fill="WHITE" layoutX="148.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
+            <Text fill="WHITE" layoutX="297.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
+            <Text fill="WHITE" layoutX="141.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
+            <Text fill="WHITE" layoutX="262.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
+            <Text fill="WHITE" layoutX="134.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
+            <TextArea layoutX="53.0" layoutY="510.0" prefHeight="75.0" prefWidth="258.0" />
+            <Text fill="WHITE" layoutX="136.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Level" wrappingWidth="116.13671875" />
+            <Text fill="WHITE" layoutX="111.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0000/0000" wrappingWidth="116.13671875" />
+            <Button layoutX="551.0" layoutY="110.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+            <Button layoutX="551.0" layoutY="310.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+            <Button layoutX="551.0" layoutY="406.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+            <Button layoutX="551.0" layoutY="504.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
       </children>
     </AnchorPane>
   </children>

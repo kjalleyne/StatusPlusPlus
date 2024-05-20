@@ -1,4 +1,4 @@
-package Classes;
+package com.example.statusplusplus.Classes;
 
 /**
  * Enum class containing task categories. Also used for searching skill levels from database

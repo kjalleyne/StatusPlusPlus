@@ -1,4 +1,4 @@
-package Classes;
+package com.example.statusplusplus.Classes;
 
 /**
  * Class for a task object

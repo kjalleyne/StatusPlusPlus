@@ -1,10 +1,10 @@
-package DatabaseModels;
+package com.example.statusplusplus.DatabaseModels;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import Classes.*;
+import com.example.statusplusplus.Classes.*;
 
 public class Database {
 

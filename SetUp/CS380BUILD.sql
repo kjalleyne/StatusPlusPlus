@@ -7,10 +7,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema 380Project
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema 380Project
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `380Project` DEFAULT CHARACTER SET utf8 ;
 USE `380Project` ;
 
@@ -24,9 +20,19 @@ CREATE TABLE IF NOT EXISTS `380Project`.`users` (
   `password` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`userID`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `380Project`.`levels`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `380Project`.`levels`;
+CREATE TABLE IF NOT EXISTS `380Project`.`levels` (
+  `level` INT NOT NULL,
+  `expThreshold` INT NOT NULL,
+  `skillPointsAwarded` INT NOT NULL,
+  PRIMARY KEY (`level`))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `380Project`.`userStats`
@@ -34,6 +40,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `380Project`.`userStats`;
 CREATE TABLE IF NOT EXISTS `380Project`.`userStats` (
   `userIDStats` INT NOT NULL,
+  `level` INT NOT NULL,
   `intelligence` INT NOT NULL,
   `strength` INT NOT NULL,
   `endurance` INT NOT NULL,
@@ -42,13 +49,16 @@ CREATE TABLE IF NOT EXISTS `380Project`.`userStats` (
   `skillpoints` INT NOT NULL,
   `exp` INT NOT NULL,
   PRIMARY KEY (`userIDStats`),
+  INDEX `statsToLevels_idx` (`level` ASC),
   CONSTRAINT `statsToUser`
     FOREIGN KEY (`userIDStats`)
-    REFERENCES `380Project`.`users` (`userID`)
+    REFERENCES `380Project`.`users` (`userID`),
+  CONSTRAINT `statsToLevels`
+    FOREIGN KEY (`level`)
+    REFERENCES `380Project`.`levels` (`level`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `380Project`.`categories`
@@ -57,10 +67,9 @@ DROP TABLE IF EXISTS `380Project`.`categories`;
 CREATE TABLE IF NOT EXISTS `380Project`.`categories` (
   `categoryID` INT NOT NULL AUTO_INCREMENT,
   `categoryName` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`categoryID`), 
+  PRIMARY KEY (`categoryID`),
   UNIQUE INDEX `categoryName_UNIQUE` (`categoryName` ASC))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `380Project`.`tasks`
@@ -73,14 +82,13 @@ CREATE TABLE IF NOT EXISTS `380Project`.`tasks` (
   `category` INT NOT NULL,
   PRIMARY KEY (`taskID`),
   UNIQUE INDEX `taskName_UNIQUE` (`taskName` ASC),
-  INDEX `categoryToCat_idx` (`category` ASC) VISIBLE,
+  INDEX `categoryToCat_idx` (`category` ASC),
   CONSTRAINT `categoryToCat`
     FOREIGN KEY (`category`)
     REFERENCES `380Project`.`categories` (`categoryID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `380Project`.`userTasks`
@@ -90,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `380Project`.`userTasks` (
   `userIDTasks` INT NOT NULL,
   `taskID` INT NOT NULL,
   PRIMARY KEY (`userIDTasks`, `taskID`),
-  INDEX `userTasksToTasks_idx` (`taskID` ASC) VISIBLE,
+  INDEX `userTasksToTasks_idx` (`taskID` ASC),
   CONSTRAINT `userTasksToUser`
     FOREIGN KEY (`userIDTasks`)
     REFERENCES `380Project`.`users` (`userID`)
@@ -121,12 +129,12 @@ INSERT INTO `380Project`.`users` (`userName`, `password`, `email`) VALUES
 ('Eve', 'password123', 'eve@example.com');
 
 -- Insert test data into the userStats table
-INSERT INTO `380Project`.`userStats` (`userIDStats`, `intelligence`, `strength`, `endurance`, `wisdom`, `vitality`, `skillpoints`, `exp`) VALUES
-(1, 10, 15, 12, 14, 13, 5, 100),
-(2, 12, 14, 13, 15, 10, 6, 200),
-(3, 14, 12, 10, 13, 15, 4, 150),
-(4, 15, 10, 14, 12, 12, 7, 250),
-(5, 13, 13, 15, 10, 14, 3, 300);
+INSERT INTO `380Project`.`userStats` (`userIDStats`, `level`, `intelligence`, `strength`, `endurance`, `wisdom`, `vitality`, `skillpoints`, `exp`) VALUES
+(1, 1, 10, 15, 12, 14, 13, 5, 100),
+(2, 1, 12, 14, 13, 15, 10, 6, 200),
+(3, 1, 14, 12, 10, 13, 15, 4, 150),
+(4, 1, 15, 10, 14, 12, 12, 7, 250),
+(5, 1, 13, 13, 15, 10, 14, 3, 300);
 
 -- Insert test data into the tasks table
 INSERT INTO `380Project`.`tasks` (`expGained`, `taskName`, `category`) VALUES
@@ -149,6 +157,14 @@ INSERT INTO `380Project`.`userTasks` (`userIDTasks`, `taskID`) VALUES
 (4, 4),
 (5, 3),
 (5, 5);
+
+-- Insert test data into the levels table
+INSERT INTO `380Project`.`levels` (`level`, `expThreshold`, `skillPointsAwarded`) VALUES
+(1, 0, 0),
+(2, 100, 3),
+(3, 300, 3),
+(4, 500, 3),
+(5, 750, 3);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

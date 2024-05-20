@@ -41,74 +41,106 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Edit">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Undo" />
-            <MenuItem mnemonicParsing="false" text="Redo" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Select All" />
-            <MenuItem mnemonicParsing="false" text="Unselect All" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="636.0" prefWidth="625.0" VBox.vgrow="ALWAYS">
-      <children>
-            <ImageView fitHeight="636.0" fitWidth="653.0">
-               <image>
-                  <Image url="@../../Downloads/Frame%201%20(1).png" />
-               </image>
-            </ImageView>
-            <Button layoutX="551.0" layoutY="208.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Button layoutX="613.0" layoutY="274.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="39.0" text="&gt;&gt;" />
-            <Text fill="WHITE" layoutX="194.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default username" wrappingWidth="116.13671875" />
-            <Text fill="WHITE" layoutX="148.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Streak" wrappingWidth="116.13671875" />
-            <Text fill="WHITE" layoutX="148.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
-            <Text fill="WHITE" layoutX="297.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
-            <Text fill="WHITE" layoutX="141.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
-            <Text fill="WHITE" layoutX="262.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
-            <Text fill="WHITE" layoutX="134.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875" />
-            <TextArea layoutX="53.0" layoutY="510.0" prefHeight="75.0" prefWidth="258.0" />
-            <Text fill="WHITE" layoutX="136.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default Level" wrappingWidth="116.13671875" />
-            <Text fill="WHITE" layoutX="111.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0000/0000" wrappingWidth="116.13671875" />
-            <Button layoutX="551.0" layoutY="110.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Button layoutX="551.0" layoutY="310.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Button layoutX="551.0" layoutY="406.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Button layoutX="551.0" layoutY="504.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-      </children>
-    </AnchorPane>
-  </children>
-</VBox>
+<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="New" />
+                        <MenuItem mnemonicParsing="false" text="Open…" />
+                        <Menu mnemonicParsing="false" text="Open Recent" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save As…" />
+                        <MenuItem mnemonicParsing="false" text="Revert" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Quit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="Copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Select All" />
+                        <MenuItem mnemonicParsing="false" text="Unselect All" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="636.0" prefWidth="625.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+            <children>
+                <ImageView fitHeight="636.0" fitWidth="653.0">
+                    <image>
+                        <Image url="@Frame%201%20(1).png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="551.0" layoutY="208.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+                <Button layoutX="613.0" layoutY="274.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="39.0" text="&gt;&gt;" />
+                <Text fill="WHITE" layoutX="194.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default username" wrappingWidth="116.13671875">
+               <font>
+                  <Font size="14.0" />
+               </font></Text>
+                <Text fill="WHITE" layoutX="148.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 Days" wrappingWidth="116.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font></Text>
+                <Text fill="WHITE" layoutX="148.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
+               <font>
+                  <Font size="18.0" />
+               </font></Text>
+                <Text fill="WHITE" layoutX="297.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
+               <font>
+                  <Font size="18.0" />
+               </font></Text>
+                <Text fill="WHITE" layoutX="141.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
+               <font>
+                  <Font size="18.0" />
+               </font></Text>
+                <Text fill="WHITE" layoutX="262.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
+               <font>
+                  <Font size="18.0" />
+               </font></Text>
+                <Text fill="WHITE" layoutX="134.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
+               <font>
+                  <Font size="18.0" />
+               </font></Text>
+                <TextArea layoutX="53.0" layoutY="510.0" prefHeight="75.0" prefWidth="258.0" />
+                <Text fill="WHITE" layoutX="136.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="116.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font></Text>
+                <Text fill="WHITE" layoutX="111.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0000/0000" wrappingWidth="116.13671875">
+               <font>
+                  <Font size="18.0" />
+               </font></Text>
+                <Button layoutX="551.0" layoutY="110.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+                <Button layoutX="551.0" layoutY="308.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+                <Button layoutX="551.0" layoutY="406.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+                <Button layoutX="551.0" layoutY="504.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+            <Text fill="WHITE" layoutX="372.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
+            <Text fill="WHITE" layoutX="372.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
+            <Text fill="WHITE" layoutX="372.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
+            <Text fill="WHITE" layoutX="372.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
+            <Text fill="WHITE" layoutX="372.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

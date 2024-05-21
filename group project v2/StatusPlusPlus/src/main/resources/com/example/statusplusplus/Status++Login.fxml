@@ -98,9 +98,11 @@
                   <Image url="@Frame%202.png" />
                </image>
             </ImageView>
-            <TextField fx:id="usernameBox" layoutX="400.0" layoutY="180.0" prefHeight="25.0" prefWidth="201.0" />
-            <TextField fx:id="passwordBox" layoutX="391.0" layoutY="225.0" prefHeight="25.0" prefWidth="201.0" />
-            <Button fx:id="submitButton" layoutX="371.0" layoutY="285.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" text="Submit" />
+            <TextField fx:id="email" layoutX="324.0" layoutY="178.0" prefHeight="25.0" prefWidth="201.0" />
+            <TextField fx:id="password" layoutX="391.0" layoutY="225.0" prefHeight="25.0" prefWidth="201.0" />
+            <Button fx:id="login" layoutX="293.0" layoutY="284.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" text="Login" />
+            <Button fx:id="createAccount" layoutX="438.0" layoutY="284.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" text="Create Account" />
+            <TextField fx:id="username" layoutX="400.0" layoutY="140.0" prefHeight="25.0" prefWidth="201.0" />
       </children>
     </AnchorPane>
   </children>

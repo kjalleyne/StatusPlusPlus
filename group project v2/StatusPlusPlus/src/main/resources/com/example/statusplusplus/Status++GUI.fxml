@@ -89,7 +89,7 @@
             <children>
                 <ImageView fitHeight="636.0" fitWidth="653.0">
                     <image>
-                        <Image url="@../../../../Downloads/group_project_v2/group%20project%20v2/StatusPlusPlus/src/main/resources/com/example/statusplusplus/Frame_1_1.png" />
+                        <Image url="@Frame_1_1.png" />
                     </image>
                 </ImageView>
                 <Button fx:id="task2button" layoutX="551.0" layoutY="208.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />

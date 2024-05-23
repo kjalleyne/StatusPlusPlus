@@ -1,6 +1,8 @@
 package com.example.statusplusplus.Classes;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.example.statusplusplus.DatabaseModels.Database;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -103,4 +105,8 @@ public class mainGUI {
 
     }
 
+    Database database = new Database();
+    public void setDatabaseManager(Database databaseManager) {
+        this.database = databaseManager;
+    }
 }

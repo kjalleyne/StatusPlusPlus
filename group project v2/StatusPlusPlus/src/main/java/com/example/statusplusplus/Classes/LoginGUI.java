@@ -126,8 +126,8 @@ public class LoginGUI {
             Parent root = loader.load();
 
             // If the main GUI controller needs the databaseManager, set it here
-            mainGUI controller = loader.getController();
-            // controller.setDatabaseManager(databaseManager);
+            mainGUI controller = new mainGUI();
+            controller.setDatabaseManager(databaseManager);
 
             Stage newStage = new Stage();
             newStage.setScene(new Scene(root));

@@ -20,7 +20,7 @@ public class LoginGUIDriver extends Application {
             Parent root = loader.load();
 
             // Get the controller instance from the loader
-            LoginGUI loginController = loader.getController();
+            LoginGUI loginController = new LoginGUI();
 
             // Set the database manager in the controller
             loginController.setDatabaseManager(databaseManager);

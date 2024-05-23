@@ -44,9 +44,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mainGUI">
     <children>
-        <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -89,57 +89,57 @@
             <children>
                 <ImageView fitHeight="636.0" fitWidth="653.0">
                     <image>
-                        <Image url="@Frame%201%20(1).png" />
+                        <Image url="@Frame_1_1.png" />
                     </image>
                 </ImageView>
-                <Button layoutX="551.0" layoutY="208.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-                <Button layoutX="613.0" layoutY="274.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="39.0" text="&gt;&gt;" />
-                <Text fill="WHITE" layoutX="194.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default username" wrappingWidth="116.13671875">
+                <Button fx:id="task2button" layoutX="551.0" layoutY="208.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+                <Button fx:id="shopOpenButton" layoutX="613.0" layoutY="274.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="39.0" text="&gt;&gt;" />
+                <Text fx:id="username" fill="WHITE" layoutX="194.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default username" wrappingWidth="116.13671875">
                <font>
                   <Font size="14.0" />
                </font></Text>
-                <Text fill="WHITE" layoutX="148.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 Days" wrappingWidth="116.13671875">
+                <Text fx:id="streak" fill="WHITE" layoutX="148.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0 Days" wrappingWidth="116.13671875">
                <font>
                   <Font size="24.0" />
                </font></Text>
-                <Text fill="WHITE" layoutX="148.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
+                <Text fx:id="str" fill="WHITE" layoutX="148.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
                <font>
                   <Font size="18.0" />
                </font></Text>
-                <Text fill="WHITE" layoutX="297.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
+                <Text fx:id="intel" fill="WHITE" layoutX="297.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
                <font>
                   <Font size="18.0" />
                </font></Text>
-                <Text fill="WHITE" layoutX="141.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
+                <Text fx:id="sta" fill="WHITE" layoutX="141.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
                <font>
                   <Font size="18.0" />
                </font></Text>
-                <Text fill="WHITE" layoutX="262.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
+                <Text fx:id="wis" fill="WHITE" layoutX="262.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
                <font>
                   <Font size="18.0" />
                </font></Text>
-                <Text fill="WHITE" layoutX="134.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
+                <Text fx:id="vit" fill="WHITE" layoutX="134.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="14.13671875">
                <font>
                   <Font size="18.0" />
                </font></Text>
-                <TextArea layoutX="53.0" layoutY="510.0" prefHeight="75.0" prefWidth="258.0" />
-                <Text fill="WHITE" layoutX="136.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="116.13671875">
+                <TextArea fx:id="notes" layoutX="53.0" layoutY="510.0" prefHeight="75.0" prefWidth="258.0" />
+                <Text fx:id="level" fill="WHITE" layoutX="136.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="116.13671875">
                <font>
                   <Font size="24.0" />
                </font></Text>
-                <Text fill="WHITE" layoutX="111.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0000/0000" wrappingWidth="116.13671875">
+                <Text fx:id="exp" fill="WHITE" layoutX="111.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0000/0000" wrappingWidth="116.13671875">
                <font>
                   <Font size="18.0" />
                </font></Text>
-                <Button layoutX="551.0" layoutY="110.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-                <Button layoutX="551.0" layoutY="308.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-                <Button layoutX="551.0" layoutY="406.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-                <Button layoutX="551.0" layoutY="504.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Text fill="WHITE" layoutX="372.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
-            <Text fill="WHITE" layoutX="372.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
-            <Text fill="WHITE" layoutX="372.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
-            <Text fill="WHITE" layoutX="372.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
-            <Text fill="WHITE" layoutX="372.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
+                <Button fx:id="task1button" layoutX="551.0" layoutY="110.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+                <Button fx:id="task3button" layoutX="551.0" layoutY="308.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+                <Button fx:id="task4button" layoutX="551.0" layoutY="406.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+                <Button fx:id="task5button" layoutX="551.0" layoutY="504.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
+            <Text fx:id="task1" fill="WHITE" layoutX="372.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
+            <Text fx:id="task2" fill="WHITE" layoutX="372.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
+            <Text fx:id="task3" fill="WHITE" layoutX="372.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
+            <Text fx:id="task4" fill="WHITE" layoutX="372.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
+            <Text fx:id="task5" fill="WHITE" layoutX="372.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="116.13671875" />
             </children>
         </AnchorPane>
     </children>

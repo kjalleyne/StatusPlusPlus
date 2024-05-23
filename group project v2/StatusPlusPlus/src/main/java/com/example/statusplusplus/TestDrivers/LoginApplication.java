@@ -1,8 +1,7 @@
-package TestDrivers;
+package com.example.statusplusplus.TestDrivers;
 
-import Classes.Task;
-import Classes.TaskCategory;
-import DatabaseModels.Database;
+import com.example.statusplusplus.Classes.*;
+import com.example.statusplusplus.DatabaseModels.*;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;

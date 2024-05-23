@@ -1,4 +1,4 @@
-package Classes;
+package com.example.statusplusplus.Classes;
 
 public class User {
     private String userName;

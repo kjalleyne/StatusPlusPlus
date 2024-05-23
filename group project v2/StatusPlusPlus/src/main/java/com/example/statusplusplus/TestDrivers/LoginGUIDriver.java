@@ -15,19 +15,8 @@ public class LoginGUIDriver extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Load the FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/statusplusplus/Status++Login.fxml"));
-            Parent root = loader.load();
-
-            // Get the controller instance from the loader
-            LoginGUI loginController = loader.getController();
-            System.out.println((String) loader.getController());
-
-            // Set the database manager in the controller
-            loginController.setDatabaseManager(databaseManager);
-
-            // Set up the stage
-            primaryStage.setTitle("Login");
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/statusplusplus/Status++Login.fxml"));
+            primaryStage.setTitle("LoginGui");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (Exception e) {

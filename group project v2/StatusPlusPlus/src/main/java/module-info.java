@@ -11,6 +11,8 @@ module com.example.statusplusplus {
     requires com.almasb.fxgl.all;
     requires java.sql;
 
+    opens com.example.statusplusplus.TestDrivers to javafx.fxml;
+    opens com.example.statusplusplus.Classes to javafx.fxml;
     opens com.example.statusplusplus to javafx.fxml;
     exports com.example.statusplusplus.Classes;
     exports com.example.statusplusplus.DatabaseModels;

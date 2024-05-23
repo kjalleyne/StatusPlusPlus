@@ -45,7 +45,6 @@ public class LoginGUI {
         assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'Status++Login.fxml'.";
         assert username != null : "fx:id=\"username\" was not injected: check your FXML file 'Status++Login.fxml'.";
 
-        login = new Button();
         login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -58,7 +57,6 @@ public class LoginGUI {
             }
         });
 
-        createAccount = new Button();
         createAccount.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -73,16 +71,9 @@ public class LoginGUI {
 
     }
 
-    private Database databaseManager;
-
-    public void setDatabaseManager(Database dbManager) {
-        this.databaseManager = dbManager;
-    }
+    private Database databaseManager = new Database();
 
     private void handleLogin() throws SQLException {
-        username = new TextField();
-        password = new TextField();
-        email = new TextField();
         String usernameInput = username.getText();
         String passwordInput = password.getText();
         String emailInput = email.getText();
@@ -100,9 +91,6 @@ public class LoginGUI {
     }
 
     private void handleAccountCreation() throws SQLException {
-        username = new TextField();
-        password = new TextField();
-        email = new TextField();
         String usernameInput = username.getText();
         String emailInput = email.getText();
         String passwordInput = password.getText();

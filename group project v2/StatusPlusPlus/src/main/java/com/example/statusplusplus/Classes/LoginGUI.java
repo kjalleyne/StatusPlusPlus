@@ -118,7 +118,7 @@ public class LoginGUI {
 
     private void openMainGUI() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Status++GUI.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/statusplusplus/Status++GUI.fxml"));
             Parent root = loader.load();
 
             Stage newStage = new Stage();

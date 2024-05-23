@@ -106,7 +106,4 @@ public class mainGUI {
     }
 
     Database database = new Database();
-    public void setDatabaseManager(Database databaseManager) {
-        this.database = databaseManager;
-    }
 }

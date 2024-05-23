@@ -13,7 +13,7 @@ public class Database {
      */
     private static final String URL = "jdbc:mysql://localhost:3306/380Project"; 
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "livelikejay75!!";
+    private static final String PASSWORD = "";
 
     /**
      * Connects to the database.
@@ -36,7 +36,7 @@ public class Database {
     public void addUser(String userName, String email, String password) throws SQLException {
         String sql = "INSERT INTO users (userName, email, password) VALUES (?, ?, ?)";
         String statsql = "INSERT INTO userStats (userIDStats, intelligence, strength, endurance" +
-                         ", wisdom, vitality, skillpoints, exp) VALUES (?, 0, 0, 0, 0, 0, 0, 0)";
+                         ", wisdom, vitality, skillpoints, exp, level) VALUES (?, 0, 0, 0, 0, 0, 0, 0, 1)";
 
         try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
             // Execute the first statement, adding the user to the db

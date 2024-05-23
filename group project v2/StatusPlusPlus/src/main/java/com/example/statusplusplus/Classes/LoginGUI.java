@@ -121,10 +121,6 @@ public class LoginGUI {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Status++GUI.fxml"));
             Parent root = loader.load();
 
-            // If the main GUI controller needs the databaseManager, set it here
-            mainGUI controller = new mainGUI();
-            controller.setDatabaseManager(databaseManager);
-
             Stage newStage = new Stage();
             newStage.setScene(new Scene(root));
             newStage.setTitle("Main GUI");

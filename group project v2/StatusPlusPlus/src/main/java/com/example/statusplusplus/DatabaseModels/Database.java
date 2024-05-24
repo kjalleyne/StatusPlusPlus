@@ -397,4 +397,54 @@ public class Database {
 
         return skillLevel;
     }
+
+    /**
+     * A method that takes in an email from the login page, gets the user and returns it.
+     * @param email The email of the user to try to build.
+     * @return A complete user object.
+     */
+    public User getUserByEmail(String EMAIL){
+        // Join user table to userstats on userId and get the info needed to build a user object
+        String sql = "SELECT u.userId, u.userName, s.intelligence, s.strength, s.endurance, s.wisdom, s.vitality, s.skillpoints, s.level, s.exp FROM users u JOIN userstats s ON u.userID = s.userIDStats WHERE email = ?";
+
+        try(Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, EMAIL);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("userId");
+                String userName = rs.getString("userName");
+                int INT = rs.getInt("intelligence");
+                int STR = rs.getInt("strength");
+                int END = rs.getInt("endurance");
+                int WIS = rs.getInt("wisdom");
+                int VIT = rs.getInt("vitality");
+                int skillP = rs.getInt("skillpoints");
+                int level = rs.getInt("level");
+                int exp = rs.getInt("exp");
+
+
+
+                //SkillLevels(int intelligence, int strength, int endurance, int wisdom, int vitality)
+                SkillLevels sk = new SkillLevels(INT, STR, END, WIS, VIT);
+
+                //UserStats(int skillPoints, int exp, int level, SkillLevels skillLevels)
+                UserStats stats = new UserStats(skillP, exp, level, sk);
+
+                //User(String userName, int userID, UserStats stats, boolean isOnStreak)
+                // We dont have functionality for the streak yet, but its still in user class so assume false for now
+                User s = new User(userName, id, stats, false );
+                System.out.println(s);
+                return s;
+            }
+
+
+
+
+        }catch (Exception e){
+            System.out.println("Failed to get the user by email: " + e.getMessage());
+        }
+
+        // Make sure to check if null at all times
+        return null;
+    }
 }

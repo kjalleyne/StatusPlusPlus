@@ -37,6 +37,8 @@ public class LoginGUI {
     @FXML
     private TextField username;
 
+    private final Database databaseManager = new Database();
+
     @FXML
     void initialize() {
         assert createAccount != null : "fx:id=\"createAccount\" was not injected: check your FXML file 'Status++Login.fxml'.";
@@ -71,10 +73,8 @@ public class LoginGUI {
 
     }
 
-    private Database databaseManager = new Database();
-
     private void handleLogin() throws SQLException {
-        String usernameInput = username.getText();
+        //String usernameInput = username.getText();
         String passwordInput = password.getText();
         String emailInput = email.getText();
         boolean validUser = databaseManager.checkCredentials(emailInput, passwordInput);
@@ -116,10 +116,19 @@ public class LoginGUI {
         }
     }
 
+    /**
+     * A function to open the main gui screen. Will also pass the userID of the logged-in user.
+     */
     private void openMainGUI() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/statusplusplus/Status++GUI.fxml"));
             Parent root = loader.load();
+
+            mainGUI gui = new mainGUI();
+            System.out.println("EMAIL TEXT AT THIS POINT IS: {" + email.getText() + "}");
+            String s = email.getText();
+            System.out.println("{" + s + "}");
+            gui.setUser(databaseManager.getUserByEmail(email.getText()));
 
             Stage newStage = new Stage();
             newStage.setScene(new Scene(root));

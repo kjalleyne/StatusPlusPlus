@@ -9,9 +9,6 @@ import com.example.statusplusplus.Classes.LoginGUI;
 import com.example.statusplusplus.DatabaseModels.Database;
 
 public class LoginGUIDriver extends Application {
-
-    private Database databaseManager = new Database();
-
     @Override
     public void start(Stage primaryStage) {
         try {

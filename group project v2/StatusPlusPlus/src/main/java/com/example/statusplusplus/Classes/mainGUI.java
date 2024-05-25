@@ -137,9 +137,9 @@ public class mainGUI {
         username.setText(currUser.getUserName());
         exp.setText(Integer.toString(currUStats.getExp()));
         level.setText(Integer.toString(currUStats.getLevel()));
-        //str.setText(Integer.toString(skillLevels.getStrength()));
-        //wis.setText(Integer.toString(skillLevels.getWisdom()));
-       // vit.setText(Integer.toString(skillLevels.getVitality()));
+        str.setText(Integer.toString(skillLevels.getStrength()));
+        wis.setText(Integer.toString(skillLevels.getWisdom()));
+        vit.setText(Integer.toString(skillLevels.getVitality()));
 
     }
 

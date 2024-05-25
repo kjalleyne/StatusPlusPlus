@@ -135,7 +135,8 @@ public class mainGUI {
      */
     public void setData(){
         username.setText(currUser.getUserName());
-        exp.setText(Integer.toString(currUStats.getExp()));
+        String experience = (currUStats.getExp() + "/");
+        exp.setText(experience);
         level.setText(Integer.toString(currUStats.getLevel()));
         str.setText(Integer.toString(skillLevels.getStrength()));
         wis.setText(Integer.toString(skillLevels.getWisdom()));

@@ -80,6 +80,10 @@ public class mainGUI {
     @FXML
     private Text wis;
 
+    private User currUser;
+    private UserStats currUStats;
+    private SkillLevels skillLevels;
+
     @FXML
     void initialize() {
         assert exp != null : "fx:id=\"exp\" was not injected: check your FXML file 'Status++GUI.fxml'.";
@@ -106,5 +110,37 @@ public class mainGUI {
 
     }
 
-    Database database = new Database();
+    /**
+     * A function that will set the current user of the page, should also call the setData function
+     * to fill in the blank text fields, but it currently needs fixed.
+     * @param currUser The user that was gotten from the DB.
+     */
+    public void setUser(User currUser){
+        //username.setText(currUser.getUserName());
+        try {
+            this.currUser = currUser;
+            this.currUStats = currUser.getStats();
+            this.skillLevels = currUStats.getuSkillLevels();
+
+            if (username != null && currUStats != null) {
+                setData();
+            }
+        }catch (Exception e){
+            System.out.println("Something went wrong in setUser(): " + e.getMessage());
+        }
+    }
+
+    /**
+     * Should go through all the user skills and levels and fill in the fmxl fields with their values.
+     */
+    public void setData(){
+        username.setText(currUser.getUserName());
+        exp.setText(Integer.toString(currUStats.getExp()));
+        level.setText(Integer.toString(currUStats.getLevel()));
+        //str.setText(Integer.toString(skillLevels.getStrength()));
+        //wis.setText(Integer.toString(skillLevels.getWisdom()));
+       // vit.setText(Integer.toString(skillLevels.getVitality()));
+
+    }
+
 }

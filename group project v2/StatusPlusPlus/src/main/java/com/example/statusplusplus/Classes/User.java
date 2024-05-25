@@ -20,14 +20,22 @@ public class User {
         this.isOnStreak = isOnStreak;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", userID=" + userID +
+                ", stats=" + stats +
+                ", isOnStreak=" + isOnStreak +
+                '}';
+    }
 
-
-    /*
+/*
         Getters and setters for the User fields.
      */
 
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public void setUserName(String userName) {

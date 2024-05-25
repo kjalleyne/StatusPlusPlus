@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.FocusModel;
 import javafx.scene.control.TextField;
 import com.example.statusplusplus.DatabaseModels.*;
 import java.sql.SQLException;
@@ -36,6 +37,8 @@ public class LoginGUI {
 
     @FXML
     private TextField username;
+
+    private final Database databaseManager = new Database();
 
     @FXML
     void initialize() {
@@ -71,10 +74,8 @@ public class LoginGUI {
 
     }
 
-    private Database databaseManager = new Database();
-
     private void handleLogin() throws SQLException {
-        String usernameInput = username.getText();
+        //String usernameInput = username.getText();
         String passwordInput = password.getText();
         String emailInput = email.getText();
         boolean validUser = databaseManager.checkCredentials(emailInput, passwordInput);
@@ -115,14 +116,22 @@ public class LoginGUI {
             openMainGUI();
         }
     }
-
+    public static User appUser;
+    /**
+     * A function to open the main gui screen. Will also pass the userID of the logged-in user.
+     */
     private void openMainGUI() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/statusplusplus/Status++GUI.fxml"));
-            Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/example/statusplusplus/Status++GUI.fxml"));
+            Parent mainParent = loader.load();
+
+            mainGUI controller = loader.getController();
+            //controller.initialize();
+            controller.setUser(databaseManager.getUserByEmail(email.getText()));
 
             Stage newStage = new Stage();
-            newStage.setScene(new Scene(root));
+            newStage.setScene(new Scene(mainParent));
             newStage.setTitle("Main GUI");
             newStage.show();
         } catch (Exception e) {

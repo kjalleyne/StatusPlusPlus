@@ -207,8 +207,8 @@ public class Database {
      * @param userID The userID of the user you are trying to get the task list of. Type: Integer
      * @return  List of Tasks that belong to the user.
      */
-    public List<Task> getAllUserTasks(int userID){
-        List<Task> tasks = new ArrayList<>();
+    public ArrayList<Task> getAllUserTasks(int userID){
+        ArrayList<Task> tasks = new ArrayList<>();
 
         String sql = "SELECT tasks.* " +
                 "FROM tasks " +

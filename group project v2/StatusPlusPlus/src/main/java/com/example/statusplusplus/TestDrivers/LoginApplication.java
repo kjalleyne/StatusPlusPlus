@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.example.statusplusplus.DatabaseModels.Algorithms.getExpThreshold;
+
 public class LoginApplication {
 
     public static void main(String[] args) throws SQLException {
@@ -79,7 +81,9 @@ public class LoginApplication {
         int stat = databaseManager.getSkillLevel(1, TaskCategory.VIT);
         System.out.println(stat);
 
-
+        for(int i = 0; i < 20; i++){
+            System.out.println(i + ": " + getExpThreshold(i));
+        }
         scanner.close();
     }
 }

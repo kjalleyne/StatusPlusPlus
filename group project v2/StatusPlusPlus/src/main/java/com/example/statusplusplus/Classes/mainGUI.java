@@ -1,5 +1,6 @@
 package com.example.statusplusplus.Classes;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.example.statusplusplus.DatabaseModels.Database;
@@ -139,6 +140,7 @@ public class mainGUI {
 
         int lvl = currUStats.getLevel();
         String threshold = Integer.toString(getExpThreshold(lvl));
+        ArrayList<Task> tasks = db.getAllUserTasks(currUser.getUserID());
 
         username.setText(currUser.getUserName());
         String experience = (currUStats.getExp() + "/" + threshold);
@@ -149,6 +151,11 @@ public class mainGUI {
         wis.setText(Integer.toString(skillLevels.getWisdom()));
         vit.setText(Integer.toString(skillLevels.getVitality()));
 
+        task1.setText(tasks.get(0).getName());
+        task2.setText(tasks.get(1).getName());
+        task3.setText(tasks.get(2).getName());
+        task4.setText(tasks.get(3).getName());
+        task5.setText(tasks.get(4).getName());
     }
 
 }

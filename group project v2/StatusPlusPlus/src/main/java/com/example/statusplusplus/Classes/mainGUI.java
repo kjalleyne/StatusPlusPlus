@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 
+import static com.example.statusplusplus.DatabaseModels.Algorithms.getExpThreshold;
+
 
 public class mainGUI {
 
@@ -83,7 +85,7 @@ public class mainGUI {
     private User currUser;
     private UserStats currUStats;
     private SkillLevels skillLevels;
-
+    private Database db = new Database();
     @FXML
     void initialize() {
         assert exp != null : "fx:id=\"exp\" was not injected: check your FXML file 'Status++GUI.fxml'.";
@@ -134,10 +136,15 @@ public class mainGUI {
      * Should go through all the user skills and levels and fill in the fmxl fields with their values.
      */
     public void setData(){
+
+        int lvl = currUStats.getLevel();
+        String threshold = Integer.toString(getExpThreshold(lvl));
+
         username.setText(currUser.getUserName());
-        String experience = (currUStats.getExp() + "/");
+        String experience = (currUStats.getExp() + "/" + threshold);
+
         exp.setText(experience);
-        level.setText(Integer.toString(currUStats.getLevel()));
+        level.setText(Integer.toString(lvl));
         str.setText(Integer.toString(skillLevels.getStrength()));
         wis.setText(Integer.toString(skillLevels.getWisdom()));
         vit.setText(Integer.toString(skillLevels.getVitality()));

@@ -400,7 +400,7 @@ public class Database {
 
     /**
      * A method that takes in an email from the login page, gets the user and returns it.
-     * @param email The email of the user to try to build.
+     * @param EMAIL The email of the user to try to build.
      * @return A complete user object.
      */
     public User getUserByEmail(String EMAIL){
@@ -422,8 +422,6 @@ public class Database {
                 int level = rs.getInt("level");
                 int exp = rs.getInt("exp");
 
-
-
                 //SkillLevels(int intelligence, int strength, int endurance, int wisdom, int vitality)
                 SkillLevels sk = new SkillLevels(INT, STR, END, WIS, VIT);
 
@@ -436,10 +434,6 @@ public class Database {
                 System.out.println(s);
                 return s;
             }
-
-
-
-
         }catch (Exception e){
             System.out.println("Failed to get the user by email: " + e.getMessage());
         }
@@ -447,4 +441,5 @@ public class Database {
         // Make sure to check if null at all times
         return null;
     }
+
 }

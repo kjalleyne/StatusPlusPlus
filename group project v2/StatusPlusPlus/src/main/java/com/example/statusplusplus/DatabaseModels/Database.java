@@ -302,6 +302,29 @@ public class Database {
     }
 
     /**
+     * Increase the level of a user
+     * @param userID UserID of user to increase the level of. Type: Integer
+     * @param increaseBy The amount to increase the level of the user. Type: Integer
+     */
+    public void increaseUserLevel(int userID, int increaseBy){
+        String sql = "UPDATE userstats SET level = level + ? WHERE userIDStats = ?";
+        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, increaseBy);
+            pstmt.setInt(2, userID);
+
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("Increased the user level by: " + increaseBy);
+            } else {
+                System.out.println("No user found with ID: " + userID);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error increasing level: " + e.getMessage());
+        }
+    }
+
+    /**
      * Changes a users skillpoints.
      * @param userID The ID of user to change. Type: Integer
      * @param increaseBy The amount to change by (can be negative). Type: Integer

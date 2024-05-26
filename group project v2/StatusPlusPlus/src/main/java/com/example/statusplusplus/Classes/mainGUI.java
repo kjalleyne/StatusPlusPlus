@@ -166,7 +166,6 @@ public class mainGUI {
      * Should go through all the user skills and levels and fill in the fmxl fields with their values.
      */
     public void setData(){
-
         int lvl = currUStats.getLevel();
         String threshold = Integer.toString(getExpThreshold(lvl));
         String experience = (currUStats.getExp() + "/" + threshold);
@@ -206,14 +205,38 @@ public class mainGUI {
         task5.setText(def);
     }
 
-
+    /**
+     * A function that handles when tasks are completed. tries to give user xp, level up if needed, etc
+     * @param taskNum The index + 1 of the task. ex. Task 1 button => 1. Integer
+     */
     private void taskComplete(int taskNum){
         try {
+            Task temp = tasks.get(taskNum - 1);
+            int taskID = temp.getId();
+            int userID = currUser.getUserID();
+            int xpThreshold = getExpThreshold(currUStats.getLevel());
+
             System.out.println("Completing task number: " + taskNum);
+            // Check get the amount of exp that the task will give
+            int expToGive = temp.getExpGained();
+            int userXP = currUStats.getExp();
+
+            //Check if the amount of exp given to the user would push the value over threshold
+            if(userXP + expToGive >= xpThreshold){
+                // Set exp to newXP - levelUpThreshold, then increment user level
+                currUStats.setExp(userXP + expToGive - xpThreshold);
+                db.increaseUserLevel(userID, 1);
+                currUStats.setLevel(currUStats.getLevel() + 1);
+            }else{
+                currUStats.setExp(userXP + expToGive);
+            }
+            setData();
+                // increment the user level, update db level, update db exp
+                // refresh the text boxes
+
 
             // Try to remove from db.
-            int taskID = tasks.get(taskNum - 1).getId();
-            db.removeUserTask(currUser.getUserID(), taskID);
+            db.removeUserTask(userID, taskID);
 
             // Reload the local view of the tasks.
             resetTaskView();

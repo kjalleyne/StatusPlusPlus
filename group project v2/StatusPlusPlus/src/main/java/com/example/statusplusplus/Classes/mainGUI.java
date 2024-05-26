@@ -1,9 +1,12 @@
 package com.example.statusplusplus.Classes;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.example.statusplusplus.DatabaseModels.Database;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -87,6 +90,8 @@ public class mainGUI {
     private UserStats currUStats;
     private SkillLevels skillLevels;
     private Database db = new Database();
+    private ArrayList<Task> tasks;
+
     @FXML
     void initialize() {
         assert exp != null : "fx:id=\"exp\" was not injected: check your FXML file 'Status++GUI.fxml'.";
@@ -111,6 +116,27 @@ public class mainGUI {
         assert vit != null : "fx:id=\"vit\" was not injected: check your FXML file 'Status++GUI.fxml'.";
         assert wis != null : "fx:id=\"wis\" was not injected: check your FXML file 'Status++GUI.fxml'.";
 
+        setupButtonAction(task1button, 1);
+        setupButtonAction(task2button, 2);
+        setupButtonAction(task3button, 3);
+        setupButtonAction(task4button, 4);
+        setupButtonAction(task5button, 5);
+
+    }
+
+    /**
+     * A method that is used to assign each of the task complete buttons their action.
+     * @param button The button that you want to assign the action to. Type: Button
+     * @param taskNumber The taskNumber of the button. Type: Integer
+     */
+    private void setupButtonAction(Button button, int taskNumber) {
+        button.setOnAction(event -> {
+            try {
+                taskComplete(taskNumber);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     /**
@@ -119,7 +145,10 @@ public class mainGUI {
      * @param currUser The user that was gotten from the DB.
      */
     public void setUser(User currUser){
-        //username.setText(currUser.getUserName());
+        if(tasks == null){
+           tasks = db.getAllUserTasks(currUser.getUserID());
+        }
+
         try {
             this.currUser = currUser;
             this.currUStats = currUser.getStats();
@@ -140,22 +169,61 @@ public class mainGUI {
 
         int lvl = currUStats.getLevel();
         String threshold = Integer.toString(getExpThreshold(lvl));
-        ArrayList<Task> tasks = db.getAllUserTasks(currUser.getUserID());
+        String experience = (currUStats.getExp() + "/" + threshold);
+        exp.setText(experience);
 
         username.setText(currUser.getUserName());
-        String experience = (currUStats.getExp() + "/" + threshold);
-
-        exp.setText(experience);
         level.setText(Integer.toString(lvl));
         str.setText(Integer.toString(skillLevels.getStrength()));
         wis.setText(Integer.toString(skillLevels.getWisdom()));
         vit.setText(Integer.toString(skillLevels.getVitality()));
 
-        task1.setText(tasks.get(0).getName());
-        task2.setText(tasks.get(1).getName());
-        task3.setText(tasks.get(2).getName());
-        task4.setText(tasks.get(3).getName());
-        task5.setText(tasks.get(4).getName());
+        // try to display the current users tasks.
+        displayTasks();
     }
 
+    /**
+     * A function used to load in a users tasks from the database.
+     * Will throw and catch an out-of-bounds exception if user doesn't have 5 tasks.
+     */
+    private void displayTasks(){
+        try{
+            task1.setText(tasks.get(0).getName());
+            task2.setText(tasks.get(1).getName());
+            task3.setText(tasks.get(2).getName());
+            task4.setText(tasks.get(3).getName());
+            task5.setText(tasks.get(4).getName());
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("User didn't have enough tasks to fill all boxes: " + e.getMessage());
+        }
+    }
+    private void resetTaskView(){
+        String def = "Try adding a new task!";
+        task1.setText(def);
+        task2.setText(def);
+        task3.setText(def);
+        task4.setText(def);
+        task5.setText(def);
+    }
+
+
+    private void taskComplete(int taskNum){
+        try {
+            System.out.println("Completing task number: " + taskNum);
+
+            // Try to remove from db.
+            int taskID = tasks.get(taskNum - 1).getId();
+            db.removeUserTask(currUser.getUserID(), taskID);
+
+            // Reload the local view of the tasks.
+            resetTaskView();
+            tasks = db.getAllUserTasks(currUser.getUserID());
+            displayTasks();
+        }
+        catch(Exception e){
+            System.out.println("Task complete function error: " + e.getMessage());
+        }
+    }
 }
+
+

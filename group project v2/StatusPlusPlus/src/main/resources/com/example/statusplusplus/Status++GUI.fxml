@@ -128,11 +128,11 @@
                 <Button fx:id="task3button" layoutX="551.0" layoutY="308.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
                 <Button fx:id="task4button" layoutX="551.0" layoutY="406.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
                 <Button fx:id="task5button" layoutX="551.0" layoutY="504.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-            <Text fx:id="task1" fill="WHITE" layoutX="372.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="169.13671875" />
-            <Text fx:id="task2" fill="WHITE" layoutX="372.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="169.13671875" />
-            <Text fx:id="task3" fill="WHITE" layoutX="372.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="169.13671875" />
-            <Text fx:id="task4" fill="WHITE" layoutX="372.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="169.13671875" />
-            <Text fx:id="task5" fill="WHITE" layoutX="372.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TaskPlaceholder" wrappingWidth="169.13671875" />
+            <Text fx:id="task1" fill="WHITE" layoutX="372.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Try adding a new task!" wrappingWidth="169.13671875" />
+            <Text fx:id="task2" fill="WHITE" layoutX="372.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Try adding a new task!" wrappingWidth="169.13671875" />
+            <Text fx:id="task3" fill="WHITE" layoutX="372.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Try adding a new task!" wrappingWidth="169.13671875" />
+            <Text fx:id="task4" fill="WHITE" layoutX="372.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Try adding a new task!" wrappingWidth="169.13671875" />
+            <Text fx:id="task5" fill="WHITE" layoutX="372.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Try adding a new task!" wrappingWidth="169.13671875" />
             </children>
         </AnchorPane>
     </children>

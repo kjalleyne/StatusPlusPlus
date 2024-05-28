@@ -325,9 +325,16 @@ public class mainGUI {
                 currUStats.setExp(userXP + expToGive - xpThreshold);
                 db.increaseUserLevel(userID, 1);
                 currUStats.setLevel(currUStats.getLevel() + 1);
+
+                //TODO: GIVE SKILL POINTS FOR LEVELING UP
+
+                // check the db for the amount of skill points to give
+                // apply change to database
+                // reload information from database
             }else{
                 currUStats.setExp(userXP + expToGive);
             }
+
             setData();
 
 

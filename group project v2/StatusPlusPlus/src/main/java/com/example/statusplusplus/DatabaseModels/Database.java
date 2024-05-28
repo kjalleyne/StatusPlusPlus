@@ -1,10 +1,15 @@
 package com.example.statusplusplus.DatabaseModels;
+/**
+ * Access database to grab data from relations
+ */
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.statusplusplus.Classes.*;
+
+import static java.sql.DriverManager.getConnection;
 
 public class Database {
 
@@ -464,4 +469,28 @@ public class Database {
         // Make sure to check if null at all times
         return null;
     }
+
+    /**
+     * Gets all tasks in the tasks relation
+     * @return ArrayList of type Task
+     */
+    public ArrayList<Task> getAllTaskIDs() {
+        ArrayList<Task> tasks = new ArrayList<>();
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT taskId, expGained, category, taskName FROM tasks")) {
+
+            while (rs.next()) {
+                int taskId = rs.getInt("taskId");
+                int expGained = rs.getInt("expGained");
+                TaskCategory taskCategory = TaskCategory.valueOf(rs.getString("category"));
+                String taskName = rs.getString("taskName");
+                tasks.add(new Task(taskId, expGained, taskCategory, taskName));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tasks;
+    }
+
 }

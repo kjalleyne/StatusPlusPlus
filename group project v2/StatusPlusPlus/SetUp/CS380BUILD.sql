@@ -130,11 +130,11 @@ INSERT INTO `380Project`.`users` (`userName`, `password`, `email`) VALUES
 
 -- Insert test data into the userStats table
 INSERT INTO `380Project`.`userStats` (`userIDStats`, `level`, `intelligence`, `strength`, `endurance`, `wisdom`, `vitality`, `skillpoints`, `exp`) VALUES
-(1, 1, 10, 15, 12, 14, 13, 5, 100),
-(2, 1, 12, 14, 13, 15, 10, 6, 200),
-(3, 1, 14, 12, 10, 13, 15, 4, 150),
-(4, 1, 15, 10, 14, 12, 12, 7, 250),
-(5, 1, 13, 13, 15, 10, 14, 3, 300);
+(1, 1, 10, 15, 12, 14, 13, 5, 90),
+(2, 1, 12, 14, 13, 15, 10, 6, 90),
+(3, 1, 14, 12, 10, 13, 15, 4, 90),
+(4, 1, 15, 10, 14, 12, 12, 7, 90),
+(5, 1, 13, 13, 15, 10, 14, 3, 90);
 
 -- Insert test data into the tasks table
 INSERT INTO `380Project`.`tasks` (`expGained`, `taskName`, `category`) VALUES

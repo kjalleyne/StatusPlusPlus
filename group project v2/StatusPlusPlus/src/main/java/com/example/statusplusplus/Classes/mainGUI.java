@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.example.statusplusplus.DatabaseModels.Algorithms;
 import com.example.statusplusplus.DatabaseModels.Database;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -312,7 +313,8 @@ public class mainGUI {
             Task temp = tasks.get(taskNum - 1);
             int taskID = temp.getId();
             int userID = currUser.getUserID();
-            int xpThreshold = getExpThreshold(currUStats.getLevel());
+            int level = currUStats.getLevel();
+            int xpThreshold = getExpThreshold(level);
 
             System.out.println("Completing task number: " + taskNum);
             // Check get the amount of exp that the task will give
@@ -324,21 +326,21 @@ public class mainGUI {
                 // Set exp to newXP - levelUpThreshold, then increment user level
                 currUStats.setExp(userXP + expToGive - xpThreshold);
                 db.increaseUserLevel(userID, 1);
-                currUStats.setLevel(currUStats.getLevel() + 1);
+                currUStats.setLevel(level + 1);
 
-                //TODO: GIVE SKILL POINTS FOR LEVELING UP
-
-                // check the db for the amount of skill points to give
+                int skPToGive = Algorithms.getSkillPointsGranted(level);
                 // apply change to database
-                // reload information from database
+                db.increaseUserSkillPoints(userID, skPToGive);
+                // apply change locally
+                currUStats.setSkillPoints(currUStats.getSkillPoints() + skPToGive);
             }else{
                 currUStats.setExp(userXP + expToGive);
             }
 
+            // Update the view since something had to change.
             setData();
 
-
-            // Try to remove from db.
+            // Try to remove task from db.
             db.removeUserTask(userID, taskID);
 
             // Reload the local view of the tasks.

@@ -96,15 +96,14 @@ public class LoginGUI {
         String emailInput = email.getText();
         String passwordInput = password.getText();
 
-        boolean validUser = databaseManager.checkCredentials(emailInput, passwordInput);
-        if (validUser) {
-            // Close the current stage
-            Stage stage = (Stage) login.getScene().getWindow();
-            stage.close();
+        // When creating account they NEED to fill in these fields.
+        if(usernameInput.isEmpty() || emailInput.isEmpty() || passwordInput.isEmpty()){
+            System.out.println("Need to fill all fields in account creation");
+            return;
+        }
 
-            // Load and show the new GUI
-            openMainGUI();
-        } else {
+        boolean validUser = databaseManager.checkCredentials(emailInput, passwordInput);
+        if (!validUser) {
             System.out.println("Creating account");
             databaseManager.addUser(usernameInput, emailInput, passwordInput);
 

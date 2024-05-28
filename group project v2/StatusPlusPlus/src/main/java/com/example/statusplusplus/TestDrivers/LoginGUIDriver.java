@@ -13,7 +13,8 @@ public class LoginGUIDriver extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/statusplusplus/Status++Login.fxml"));
-            primaryStage.setTitle("LoginGui");
+            primaryStage.setTitle("Status++ Login");
+            primaryStage.setResizable(false);
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (Exception e) {

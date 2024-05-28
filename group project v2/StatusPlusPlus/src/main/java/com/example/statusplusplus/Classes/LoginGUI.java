@@ -132,7 +132,8 @@ public class LoginGUI {
 
             Stage newStage = new Stage();
             newStage.setScene(new Scene(mainParent));
-            newStage.setTitle("Main GUI");
+            newStage.setTitle("Status++");
+            newStage.setResizable(false);
             newStage.show();
         } catch (Exception e) {
             e.printStackTrace();

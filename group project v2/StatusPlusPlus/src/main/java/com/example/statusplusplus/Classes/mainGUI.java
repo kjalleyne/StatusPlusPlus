@@ -24,6 +24,19 @@ public class mainGUI {
     private URL location;
 
     @FXML
+    private Text skillPointsText;
+    @FXML
+    private Button strIncrementButton;
+    @FXML
+    private Button intIncrementButton;
+    @FXML
+    private Button staIncrementButton;
+    @FXML
+    private Button wisIncrementButton;
+    @FXML
+    private Button vitIncrementButton;
+
+    @FXML
     private Text exp;
 
     @FXML
@@ -122,6 +135,17 @@ public class mainGUI {
         setupButtonAction(task4button, 4);
         setupButtonAction(task5button, 5);
 
+        setupIncrementButton(strIncrementButton, TaskCategory.STR);
+        setupIncrementButton(intIncrementButton, TaskCategory.INT);
+        setupIncrementButton(staIncrementButton, TaskCategory.END);
+        setupIncrementButton(wisIncrementButton, TaskCategory.WIS);
+        setupIncrementButton(vitIncrementButton, TaskCategory.VIT);
+
+        strIncrementButton.setVisible(false);
+        intIncrementButton.setVisible(false);
+        staIncrementButton.setVisible(false);
+        wisIncrementButton.setVisible(false);
+        vitIncrementButton.setVisible(false);
     }
 
     /**
@@ -137,6 +161,70 @@ public class mainGUI {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    /**
+     * A method which is used to assign each of the skill point increment buttons to their actions.
+     * @param button The button that you want to assign the action to. Type: Button
+     * @param category The taskNumber of the button. Type: Integer
+     */
+    private void setupIncrementButton(Button button, TaskCategory category) {
+        button.setOnAction(event -> {
+            try {
+                incrementStat(category);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    /**
+     * A method which increments the given stat and updates the view.
+     * @param category The category of the incremented stat.
+     * @throws SQLException An error accessing or modifying the database.
+     */
+    private void incrementStat(TaskCategory category) throws SQLException {
+        if (currUStats.getSkillPoints() > 0) {
+            db.increaseUserStat(currUser.getUserID(), category, 5);
+            db.increaseUserSkillPoints(currUser.getUserID(), -1);
+
+            // Update the currUStats object
+            switch (category) {
+                case STR:
+                    skillLevels.setStrength(skillLevels.getStrength() + 5);
+                    str.setText(Integer.toString(skillLevels.getStrength()));
+                    break;
+                case INT:
+                    skillLevels.setIntelligence(skillLevels.getIntelligence() + 5);
+                    intel.setText(Integer.toString(skillLevels.getIntelligence()));
+                    break;
+                case END:
+                    skillLevels.setEndurance(skillLevels.getEndurance() + 5);
+                    sta.setText(Integer.toString(skillLevels.getEndurance()));
+                    break;
+                case WIS:
+                    skillLevels.setWisdom(skillLevels.getWisdom() + 5);
+                    wis.setText(Integer.toString(skillLevels.getWisdom()));
+                    break;
+                case VIT:
+                    skillLevels.setVitality(skillLevels.getVitality() + 5);
+                    vit.setText(Integer.toString(skillLevels.getVitality()));
+                    break;
+            }
+
+            // Decrement skill points and update the display
+            currUStats.setSkillPoints(currUStats.getSkillPoints() - 1);
+            skillPointsText.setText(Integer.toString(currUStats.getSkillPoints()));
+
+            // Hide buttons and skill points text if skill points are 0
+            if (currUStats.getSkillPoints() <= 0) {
+                strIncrementButton.setVisible(false);
+                intIncrementButton.setVisible(false);
+                staIncrementButton.setVisible(false);
+                wisIncrementButton.setVisible(false);
+                vitIncrementButton.setVisible(false);
+            }
+        }
     }
 
     /**
@@ -177,7 +265,16 @@ public class mainGUI {
         wis.setText(Integer.toString(skillLevels.getWisdom()));
         vit.setText(Integer.toString(skillLevels.getVitality()));
 
-        // try to display the current users tasks.
+        int skillPoints = currUStats.getSkillPoints();
+        skillPointsText.setText(Integer.toString(skillPoints));
+
+        boolean showSkillControls = skillPoints > 0;
+        strIncrementButton.setVisible(showSkillControls);
+        intIncrementButton.setVisible(showSkillControls);
+        staIncrementButton.setVisible(showSkillControls);
+        wisIncrementButton.setVisible(showSkillControls);
+        vitIncrementButton.setVisible(showSkillControls);
+
         displayTasks();
     }
 
@@ -196,6 +293,7 @@ public class mainGUI {
             System.out.println("User didn't have enough tasks to fill all boxes: " + e.getMessage());
         }
     }
+
     private void resetTaskView(){
         String def = "Try adding a new task!";
         task1.setText(def);
@@ -231,8 +329,6 @@ public class mainGUI {
                 currUStats.setExp(userXP + expToGive);
             }
             setData();
-                // increment the user level, update db level, update db exp
-                // refresh the text boxes
 
 
             // Try to remove from db.

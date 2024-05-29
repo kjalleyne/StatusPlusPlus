@@ -182,8 +182,8 @@ public class mainGUI {
 
             UserAddsTasks controller = loader.getController();
 
-            //TODO: Implement the recieve user function so we can set the tasks from the other page
-            //controller.receiveUserID(currUser.getUserID());
+            // Pass the parent scene and current userID to the task adding page
+            controller.receiveUserID(currUser.getUserID());
             controller.setMainStage((Stage) taskPageButton.getScene().getWindow());
 
             Stage newStage = new Stage();

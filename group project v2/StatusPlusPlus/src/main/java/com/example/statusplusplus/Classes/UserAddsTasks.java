@@ -59,6 +59,7 @@ public class UserAddsTasks implements Initializable {
     private TableColumn<TaskWrapper, Boolean> selectCol; // for user to select a task (maybe <Task, Boolean>??)
 
     private Stage mainStage;
+    private int userID;
 
     // Initializing Database class
     private final Database db = new Database();
@@ -107,7 +108,20 @@ public class UserAddsTasks implements Initializable {
 
     }
 
+    /**
+     * A function to recieve the userID of the user who clicked on this page from the mainGUI.
+     * Assigns value to this.userID, which will be used when adding the tasks to the users.
+     * @param userID The user ID of the user who clicked on the task page. Type: Integer
+     */
+    public void receiveUserID(int userID){
+        this.userID = userID;
+        System.out.println("Received the userID from mainGUI: " + this.userID);
+    }
 
+    /**
+     * A function used to keep track of the parent of this page.
+     * @param mainStage The stage to return to when we press home button. Type: Stage
+     */
     public void setMainStage(Stage mainStage){
         this.mainStage = mainStage;
     }

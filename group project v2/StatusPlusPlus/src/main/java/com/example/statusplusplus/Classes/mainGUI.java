@@ -218,29 +218,29 @@ public class mainGUI {
      */
     private void incrementStat(TaskCategory category) throws SQLException {
         if (currUStats.getSkillPoints() > 0) {
-            db.increaseUserStat(currUser.getUserID(), category, 5);
+            db.increaseUserStat(currUser.getUserID(), category, 1);
             db.increaseUserSkillPoints(currUser.getUserID(), -1);
 
             // Update the currUStats object
             switch (category) {
                 case STR:
-                    skillLevels.setStrength(skillLevels.getStrength() + 5);
+                    skillLevels.setStrength(skillLevels.getStrength() + 1);
                     str.setText(Integer.toString(skillLevels.getStrength()));
                     break;
                 case INT:
-                    skillLevels.setIntelligence(skillLevels.getIntelligence() + 5);
+                    skillLevels.setIntelligence(skillLevels.getIntelligence() + 1);
                     intel.setText(Integer.toString(skillLevels.getIntelligence()));
                     break;
                 case END:
-                    skillLevels.setEndurance(skillLevels.getEndurance() + 5);
+                    skillLevels.setEndurance(skillLevels.getEndurance() + 1);
                     sta.setText(Integer.toString(skillLevels.getEndurance()));
                     break;
                 case WIS:
-                    skillLevels.setWisdom(skillLevels.getWisdom() + 5);
+                    skillLevels.setWisdom(skillLevels.getWisdom() + 1);
                     wis.setText(Integer.toString(skillLevels.getWisdom()));
                     break;
                 case VIT:
-                    skillLevels.setVitality(skillLevels.getVitality() + 5);
+                    skillLevels.setVitality(skillLevels.getVitality() + 1);
                     vit.setText(Integer.toString(skillLevels.getVitality()));
                     break;
             }

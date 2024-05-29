@@ -1,5 +1,9 @@
 package com.example.statusplusplus.DatabaseModels;
 
+/**
+ * A class used for Data Models that dont need to interact with the database. Algorithmically
+ * generated values.
+ */
 public class Algorithms {
     /**
      * Multiply level by 100 and return.

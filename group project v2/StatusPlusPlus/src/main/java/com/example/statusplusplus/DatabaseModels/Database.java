@@ -5,11 +5,7 @@ package com.example.statusplusplus.DatabaseModels;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
-
 import com.example.statusplusplus.Classes.*;
-
-import static java.sql.DriverManager.getConnection;
 
 public class Database {
 
@@ -483,7 +479,7 @@ public class Database {
             while (rs.next()) {
                 int taskId = rs.getInt("taskId");
                 int expGained = rs.getInt("expGained");
-                TaskCategory taskCategory = TaskCategory.valueOf(rs.getString("category"));
+                TaskCategory taskCategory = TaskCategory.fromInt(rs.getInt("category"));
                 String taskName = rs.getString("taskName");
                 tasks.add(new Task(taskId, expGained, taskCategory, taskName));
             }

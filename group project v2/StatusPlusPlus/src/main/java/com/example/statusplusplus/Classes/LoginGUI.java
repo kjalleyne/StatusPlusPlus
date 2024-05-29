@@ -115,7 +115,6 @@ public class LoginGUI {
             openMainGUI();
         }
     }
-    public static User appUser;
     /**
      * A function to open the main gui screen. Will also pass the userID of the logged-in user.
      */

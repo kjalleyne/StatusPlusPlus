@@ -80,17 +80,13 @@ public class UserAddsTasks implements Initializable {
             taskWrapperList.add(new TaskWrapper(task));
         }
 
-        // Add a listener to the ComboBox selection property
         comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newCategory) -> {
-            // Update the text of the Text node based on the selected item
             showingCtgyTaskTF.setText("Showing " + newCategory + " Tasks");
-            // Calls the display category method to update tasks shown
             displayCategory(newCategory);
         });
 
         tableView.setItems(taskWrapperList);
 
-        // set based on field names from Task class
         taskNoCol.setCellValueFactory(new PropertyValueFactory<>("taskId"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("taskName"));
         expGainedCol.setCellValueFactory(new PropertyValueFactory<>("expGained"));
@@ -101,10 +97,8 @@ public class UserAddsTasks implements Initializable {
 
         comboBox.setItems(FXCollections.observableArrayList("All", "Endurance", "Intelligence", "Strength", "Wisdom", "Vitality"));
 
-
         // DELETE LATER - test to get task relation data
         printAllTasks();
-
     }
 
 

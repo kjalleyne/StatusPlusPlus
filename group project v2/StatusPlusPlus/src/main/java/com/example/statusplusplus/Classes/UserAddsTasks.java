@@ -6,6 +6,7 @@ package com.example.statusplusplus.Classes;
 // classes imported
 import com.example.statusplusplus.DatabaseModels.Database;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.scene.text.Text;
+import javafx.stage.WindowEvent;
 
 
 public class UserAddsTasks implements Initializable {
@@ -77,6 +79,8 @@ public class UserAddsTasks implements Initializable {
     private final ArrayList<Task> taskIDs = db.getAllTaskIDs();
     private ObservableList<TaskWrapper> taskWrapperList;
 
+    private mainGUI mainController;
+
     /**
      * Page initialization, sets combo box and updates combo box
      * and tasks display based on category user selects
@@ -117,6 +121,20 @@ public class UserAddsTasks implements Initializable {
 
         // DELETE LATER - test to get task relation data
         printAllTasks();
+
+        // This will make it so the close button calls the goToHome logic, so that changes are applied to tasks relation
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Stage s = (Stage) homeButton.getScene().getWindow();
+                s.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                    @Override
+                    public void handle(WindowEvent windowEvent) {
+                        goToHomePage();
+                    }
+                });
+            }
+        });
     }
 
     /**
@@ -151,6 +169,9 @@ public class UserAddsTasks implements Initializable {
         this.mainStage = mainStage;
     }
 
+    public void setMainController(mainGUI mainController){
+        this.mainController = mainController;
+    }
 
     /**
      * Method to display tasks based on category user selected from combo box
@@ -199,7 +220,15 @@ public class UserAddsTasks implements Initializable {
         stage.close();
 
         if(mainStage != null){
+            if(this.mainController != null){
+                // Reload all the tasks of the user when they go to navigate home
+                mainController.loadTasksFromDB(this.userID);
+                // Re-display the tasks that were just possibly added to the page.
+                mainController.displayTasks();
+            }
+
             mainStage.show();
         }
     }
+
 }

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.example.statusplusplus.DatabaseModels.Algorithms;
 import com.example.statusplusplus.DatabaseModels.Database;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import static com.example.statusplusplus.DatabaseModels.Algorithms.getExpThreshold;
 
@@ -185,6 +187,7 @@ public class mainGUI {
             // Pass the parent scene and current userID to the task adding page
             controller.receiveUserID(currUser.getUserID());
             controller.setMainStage((Stage) taskPageButton.getScene().getWindow());
+            controller.setMainController(this);
 
             Stage newStage = new Stage();
             newStage.setScene(new Scene(p));
@@ -317,7 +320,7 @@ public class mainGUI {
      * A function used to load in a users tasks from the database.
      * Will throw and catch an out-of-bounds exception if user doesn't have 5 tasks.
      */
-    private void displayTasks(){
+    public void displayTasks(){
         try{
             task1.setText(tasks.get(0).getTaskName());
             task2.setText(tasks.get(1).getTaskName());
@@ -327,6 +330,10 @@ public class mainGUI {
         }catch(IndexOutOfBoundsException e){
             System.out.println("User didn't have enough tasks to fill all boxes: " + e.getMessage());
         }
+    }
+
+    public void loadTasksFromDB(int userID){
+        tasks = db.getAllUserTasks(userID);
     }
 
     private void resetTaskView(){

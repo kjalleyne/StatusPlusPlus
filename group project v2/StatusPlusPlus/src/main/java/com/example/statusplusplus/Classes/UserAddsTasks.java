@@ -120,7 +120,7 @@ public class UserAddsTasks implements Initializable {
     }
 
     public void handleTasks() {
-        
+
     }
 
     /**

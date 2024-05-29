@@ -26,7 +26,7 @@
       <Button layoutX="535.0" layoutY="394.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="107.0" text="Confirm Selected" />
       <Button layoutX="445.0" layoutY="394.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="81.0" text="Deselect All" />
       <ComboBox fx:id="comboBox" layoutX="492.0" layoutY="67.0" prefWidth="150.0" promptText="All" />
-      <TableView fx:id="tableView" layoutX="25.0" layoutY="131.0" prefHeight="200.0" prefWidth="619.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="tableView" editable="true" layoutX="25.0" layoutY="131.0" prefHeight="200.0" prefWidth="619.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
         <columns>
           <TableColumn fx:id="taskNoCol" prefWidth="97.0" text="Task No." />
           <TableColumn fx:id="descriptionCol" prefWidth="259.0" text="Description" />

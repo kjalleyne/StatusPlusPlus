@@ -162,11 +162,13 @@ public class UserAddsTasks implements Initializable {
             public void handle(ActionEvent event) {
                 boolean exp = expChoice.getSelectionModel().getSelectedItem() == null;
                 boolean stat = statChoice.getSelectionModel().getSelectedItem() == null;
-                if (taskText.getText() == null|| exp || stat)
+                if (taskText.getText() == null || exp || stat)
                 {
                     System.out.println("One or more of the options is missing information");
                 }
-                handleCreateTask();
+                else {
+                    handleCreateTask();
+                }
             }
         });
 

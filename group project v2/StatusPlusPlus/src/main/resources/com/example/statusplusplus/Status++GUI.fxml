@@ -99,7 +99,7 @@
                 <Button fx:id="vitIncrementButton" layoutX="83.0" layoutY="401.0" mnemonicParsing="false" text="+" />
                 <!-- Existing components -->
                 <Button fx:id="task2button" layoutX="551.0" layoutY="208.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" />
-                <Button fx:id="shopOpenButton" layoutX="613.0" layoutY="274.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="39.0" text="&gt;&gt;" />
+                <Button fx:id="taskPageButton" layoutX="613.0" layoutY="274.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="39.0" text="&gt;&gt;" />
                 <Text fx:id="username" fill="WHITE" layoutX="194.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Default username" wrappingWidth="116.13671875">
                     <font>
                         <Font size="14.0" />

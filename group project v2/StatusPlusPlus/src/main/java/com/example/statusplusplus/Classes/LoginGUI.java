@@ -48,6 +48,7 @@ public class LoginGUI {
         assert login != null : "fx:id=\"login\" was not injected: check your FXML file 'Status++Login.fxml'.";
         assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'Status++Login.fxml'.";
         assert username != null : "fx:id=\"username\" was not injected: check your FXML file 'Status++Login.fxml'.";
+        assert errorLabel != null : "fx:id=\"errorLabel\" was not injected: check your FXML file 'Status++Login.fxml'.";
 
         login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -80,6 +81,12 @@ public class LoginGUI {
         String passwordInput = password.getText();
         String emailInput = email.getText();
         boolean validUser = databaseManager.checkCredentials(emailInput, passwordInput);
+
+        if(emailInput.isEmpty() || passwordInput.isEmpty()){
+            errorLabel.setText("Need to fill in email and password to login");
+            return;
+        }
+
         if (validUser) {
             // Close the current stage
             Stage stage = (Stage) login.getScene().getWindow();
@@ -88,7 +95,7 @@ public class LoginGUI {
             // Load and show the new GUI
             openMainGUI();
         } else {
-            System.out.println("Login failed");
+            errorLabel.setText("Email/Password are incorrect");
         }
     }
 
@@ -114,6 +121,9 @@ public class LoginGUI {
 
             // Load and show the new GUI
             openMainGUI();
+        }
+        else {
+            errorLabel.setText("User already exists");
         }
     }
     /**

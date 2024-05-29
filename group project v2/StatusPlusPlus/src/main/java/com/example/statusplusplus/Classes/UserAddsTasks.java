@@ -119,8 +119,18 @@ public class UserAddsTasks implements Initializable {
         printAllTasks();
     }
 
+    /**
+     * A function to handle the clicking of confirm selection
+     * Goes through the list of TaskWrapper objects and checked if they were selected, if they are add
+     * to the users DB table of tasks.
+     */
     public void handleTasks() {
-
+        for(TaskWrapper taskW: taskWrapperList){
+            if(taskW.isSelected()){
+                // Assign the task to the user since it was selected
+                db.assignUserTask(this.userID, taskW.getTaskId());
+            }
+        }
     }
 
     /**

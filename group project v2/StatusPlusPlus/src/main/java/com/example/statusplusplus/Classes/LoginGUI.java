@@ -3,10 +3,7 @@ package com.example.statusplusplus.Classes;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.FocusModel;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import com.example.statusplusplus.DatabaseModels.*;
 import java.sql.SQLException;
 import javafx.event.ActionEvent;
@@ -34,7 +31,7 @@ public class LoginGUI {
     private Button login;
 
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
     private TextField username;

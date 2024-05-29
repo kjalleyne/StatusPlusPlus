@@ -47,6 +47,8 @@ public class UserAddsTasks implements Initializable {
     @FXML
     private Button deSelected;
 
+    @FXML
+    private Button selAll;
     /**
      * Table
      */
@@ -115,6 +117,22 @@ public class UserAddsTasks implements Initializable {
             }
         });
 
+        deSelected.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Deselected");
+                handleDeselect();
+            }
+        });
+
+        selAll.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Selected");
+                handleSelectAll();
+            }
+        });
+
         // DELETE LATER - test to get task relation data
         printAllTasks();
     }
@@ -129,6 +147,22 @@ public class UserAddsTasks implements Initializable {
             if(taskW.isSelected()){
                 // Assign the task to the user since it was selected
                 db.assignUserTask(this.userID, taskW.getTaskId());
+            }
+        }
+    }
+
+    public void handleDeselect() {
+        for(TaskWrapper select: taskWrapperList) {
+            if(select.isSelected()) {
+                select.setSelected(false);
+            }
+        }
+    }
+
+    public void handleSelectAll() {
+        for(TaskWrapper select: taskWrapperList) {
+            if(select.isSelected()) {
+                select.setSelected(true);
             }
         }
     }

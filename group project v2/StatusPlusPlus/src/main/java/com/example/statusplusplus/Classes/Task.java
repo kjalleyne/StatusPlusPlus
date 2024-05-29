@@ -7,7 +7,8 @@ public class Task {
 
     // ---- Fields ----
 
-    private int taskId, expGained;
+    private int taskId;
+    private int expGained;
     private TaskCategory taskCategory;
     private String taskName;
 
@@ -33,7 +34,7 @@ public class Task {
      * Method to get task ID.
      * @return Task ID.
      */
-    public int getId() {
+    public int getTaskId() {
         return taskId;
     }
 
@@ -41,7 +42,7 @@ public class Task {
      * Method to set the task ID.
      * @param id Task ID.
      */
-    public void setId(int id) {
+    public void setTaskId(int id) {
         taskId = id;
     }
 
@@ -65,7 +66,7 @@ public class Task {
      * Method to get task category.
      * @return Task category.
      */
-    public TaskCategory getCategory() {
+    public TaskCategory getTaskCategory() {
         return taskCategory;
     }
 
@@ -81,7 +82,7 @@ public class Task {
      * Method to get task name.
      * @return Task name.
      */
-    public String getName() {
+    public String getTaskName() {
         return taskName;
     }
 

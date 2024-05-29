@@ -6,8 +6,6 @@ import java.util.ResourceBundle;
 
 import com.example.statusplusplus.DatabaseModels.Algorithms;
 import com.example.statusplusplus.DatabaseModels.Database;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -285,11 +283,11 @@ public class mainGUI {
      */
     private void displayTasks(){
         try{
-            task1.setText(tasks.get(0).getName());
-            task2.setText(tasks.get(1).getName());
-            task3.setText(tasks.get(2).getName());
-            task4.setText(tasks.get(3).getName());
-            task5.setText(tasks.get(4).getName());
+            task1.setText(tasks.get(0).getTaskName());
+            task2.setText(tasks.get(1).getTaskName());
+            task3.setText(tasks.get(2).getTaskName());
+            task4.setText(tasks.get(3).getTaskName());
+            task5.setText(tasks.get(4).getTaskName());
         }catch(IndexOutOfBoundsException e){
             System.out.println("User didn't have enough tasks to fill all boxes: " + e.getMessage());
         }
@@ -311,7 +309,7 @@ public class mainGUI {
     private void taskComplete(int taskNum){
         try {
             Task temp = tasks.get(taskNum - 1);
-            int taskID = temp.getId();
+            int taskID = temp.getTaskId();
             int userID = currUser.getUserID();
             int level = currUStats.getLevel();
             int xpThreshold = getExpThreshold(level);

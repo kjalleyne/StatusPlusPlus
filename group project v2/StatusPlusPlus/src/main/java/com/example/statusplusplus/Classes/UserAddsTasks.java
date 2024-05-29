@@ -117,6 +117,14 @@ public class UserAddsTasks implements Initializable {
             }
         });
 
+        selAll.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Selected");
+                handleSelectAll();
+            }
+        });
+
         deSelected.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -125,13 +133,7 @@ public class UserAddsTasks implements Initializable {
             }
         });
 
-        selAll.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Selected");
-                handleSelectAll();
-            }
-        });
+
 
         // DELETE LATER - test to get task relation data
         printAllTasks();
@@ -152,17 +154,17 @@ public class UserAddsTasks implements Initializable {
     }
 
     public void handleDeselect() {
-        for(TaskWrapper select: taskWrapperList) {
-            if(select.isSelected()) {
-                select.setSelected(false);
+        for(TaskWrapper select1: taskWrapperList) {
+            if(select1.isSelected()) {
+                select1.setSelected(false);
             }
         }
     }
 
     public void handleSelectAll() {
-        for(TaskWrapper select: taskWrapperList) {
-            if(select.isSelected()) {
-                select.setSelected(true);
+        for(TaskWrapper select2: taskWrapperList) {
+            if(!select2.isSelected()) {
+                select2.setSelected(true);
             }
         }
     }

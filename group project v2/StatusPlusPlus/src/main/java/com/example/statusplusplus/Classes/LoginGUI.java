@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.FocusModel;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import com.example.statusplusplus.DatabaseModels.*;
 import java.sql.SQLException;
@@ -37,6 +38,9 @@ public class LoginGUI {
 
     @FXML
     private TextField username;
+
+    @FXML
+    private Label errorLabel;
 
     private final Database databaseManager = new Database();
 

@@ -191,7 +191,6 @@ public class mainGUI {
             newStage.setTitle("Add Tasks");
             newStage.setResizable(false);
             newStage.show();
-
         }catch(Exception e){
             System.out.println("Error navigating to the task page");
         }
@@ -298,6 +297,8 @@ public class mainGUI {
         str.setText(Integer.toString(skillLevels.getStrength()));
         wis.setText(Integer.toString(skillLevels.getWisdom()));
         vit.setText(Integer.toString(skillLevels.getVitality()));
+        intel.setText(Integer.toString(skillLevels.getIntelligence()));
+        sta.setText(Integer.toString(skillLevels.getEndurance()));
 
         int skillPoints = currUStats.getSkillPoints();
         skillPointsText.setText(Integer.toString(skillPoints));

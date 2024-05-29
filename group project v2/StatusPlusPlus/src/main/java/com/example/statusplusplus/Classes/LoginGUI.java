@@ -99,7 +99,7 @@ public class LoginGUI {
 
         // When creating account they NEED to fill in these fields.
         if(usernameInput.isEmpty() || emailInput.isEmpty() || passwordInput.isEmpty()){
-            System.out.println("Need to fill all fields in account creation");
+            errorLabel.setText("Need to fill all fields in account creation");
             return;
         }
 

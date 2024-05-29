@@ -8,6 +8,8 @@ import com.example.statusplusplus.DatabaseModels.Database;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.scene.text.Text;
@@ -37,6 +40,12 @@ public class UserAddsTasks implements Initializable {
      */
     @FXML
     private Button homeButton;
+
+    @FXML
+    private Button conSelected;
+
+    @FXML
+    private Button deSelected;
 
     /**
      * Table
@@ -98,8 +107,20 @@ public class UserAddsTasks implements Initializable {
 
         comboBox.setItems(FXCollections.observableArrayList("All", "Endurance", "Intelligence", "Strength", "Wisdom", "Vitality"));
 
+        conSelected.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Login button clicked");
+                handleTasks();
+            }
+        });
+
         // DELETE LATER - test to get task relation data
         printAllTasks();
+    }
+
+    public void handleTasks() {
+        
     }
 
     /**

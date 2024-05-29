@@ -3,10 +3,7 @@ package com.example.statusplusplus.Classes;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.FocusModel;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import com.example.statusplusplus.DatabaseModels.*;
 import java.sql.SQLException;
 import javafx.event.ActionEvent;
@@ -34,7 +31,7 @@ public class LoginGUI {
     private Button login;
 
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
     private TextField username;
@@ -51,6 +48,7 @@ public class LoginGUI {
         assert login != null : "fx:id=\"login\" was not injected: check your FXML file 'Status++Login.fxml'.";
         assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'Status++Login.fxml'.";
         assert username != null : "fx:id=\"username\" was not injected: check your FXML file 'Status++Login.fxml'.";
+        assert errorLabel != null : "fx:id=\"errorLabel\" was not injected: check your FXML file 'Status++Login.fxml'.";
 
         login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -83,6 +81,12 @@ public class LoginGUI {
         String passwordInput = password.getText();
         String emailInput = email.getText();
         boolean validUser = databaseManager.checkCredentials(emailInput, passwordInput);
+
+        if(emailInput.isEmpty() || passwordInput.isEmpty()){
+            errorLabel.setText("Need to fill in email and password to login");
+            return;
+        }
+
         if (validUser) {
             // Close the current stage
             Stage stage = (Stage) login.getScene().getWindow();
@@ -91,7 +95,7 @@ public class LoginGUI {
             // Load and show the new GUI
             openMainGUI();
         } else {
-            System.out.println("Login failed");
+            errorLabel.setText("Email/Password are incorrect");
         }
     }
 
@@ -102,7 +106,7 @@ public class LoginGUI {
 
         // When creating account they NEED to fill in these fields.
         if(usernameInput.isEmpty() || emailInput.isEmpty() || passwordInput.isEmpty()){
-            System.out.println("Need to fill all fields in account creation");
+            errorLabel.setText("Need to fill all fields in account creation");
             return;
         }
 
@@ -117,6 +121,9 @@ public class LoginGUI {
 
             // Load and show the new GUI
             openMainGUI();
+        }
+        else {
+            errorLabel.setText("User already exists");
         }
     }
     /**

@@ -49,6 +49,18 @@ public class UserAddsTasks implements Initializable {
 
     @FXML
     private Button selAll;
+
+    @FXML
+    private Button createTask;
+
+    @FXML
+    private ChoiceBox expChoice;
+
+    @FXML
+    private ChoiceBox statChoice;
+
+    @FXML
+    private TextArea taskText;
     /**
      * Table
      */
@@ -87,6 +99,18 @@ public class UserAddsTasks implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        statChoice.getItems().add("Strength");
+        statChoice.getItems().add("Stamina");
+        statChoice.getItems().add("Vitality");
+        statChoice.getItems().add("Intelligence");
+        statChoice.getItems().add("Wisdom");
+
+        expChoice.getItems().add("30");
+        expChoice.getItems().add("40");
+        expChoice.getItems().add("50");
+        expChoice.getItems().add("60");
+        expChoice.getItems().add("70");
+
         taskWrapperList = FXCollections.observableArrayList();
         for (Task task : taskIDs) {
             taskWrapperList.add(new TaskWrapper(task));
@@ -133,12 +157,82 @@ public class UserAddsTasks implements Initializable {
             }
         });
 
+        createTask.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                boolean exp = expChoice.getSelectionModel().getSelectedItem() == null;
+                boolean stat = statChoice.getSelectionModel().getSelectedItem() == null;
+                if (taskText.getText() == null|| exp || stat)
+                {
+                    System.out.println("One or more of the options is missing information");
+                }
+                handleCreateTask();
+            }
+        });
 
 
         // DELETE LATER - test to get task relation data
         printAllTasks();
     }
 
+    /**
+     * Handles the task creation for when a user wants to create a task,
+     * determines the task name, stat category, and exp amount.
+     */
+    public void handleCreateTask() {
+        String selectedStat = (String) statChoice.getSelectionModel().getSelectedItem();
+        String selectedExp = (String) expChoice.getSelectionModel().getSelectedItem();
+
+        String taskName = taskText.getText();
+        TaskCategory stat = null;
+        int exp = 30;
+
+        switch (selectedStat) {
+            case "Strength":
+                stat = TaskCategory.STR;
+                break;
+            case "Stamina":
+                stat = TaskCategory.END;
+                break;
+            case "Vitality":
+                stat = TaskCategory.VIT;
+                break;
+            case "Intelligence":
+                stat = TaskCategory.INT;
+                break;
+            case "Wisdom":
+                stat = TaskCategory.WIS;
+                break;
+        }
+
+        switch (selectedExp) {
+            case "30":
+                exp = 30;
+                break;
+            case "40":
+                exp = 40;
+                break;
+            case "50":
+                exp = 50;
+                break;
+            case "60":
+                exp = 60;
+                break;
+            case "70":
+                exp = 70;
+                break;
+        }
+
+        int statValue = stat.getValue();
+        db.addTask(exp, taskName, statValue);
+
+        taskWrapperList.clear();
+        ArrayList<Task> updatedTaskIDs = db.getAllTaskIDs();
+        for (Task task : updatedTaskIDs) {
+            taskWrapperList.add(new TaskWrapper(task));
+        }
+        tableView.setItems(taskWrapperList);
+    }
     /**
      * A function to handle the clicking of confirm selection
      * Goes through the list of TaskWrapper objects and checked if they were selected, if they are add

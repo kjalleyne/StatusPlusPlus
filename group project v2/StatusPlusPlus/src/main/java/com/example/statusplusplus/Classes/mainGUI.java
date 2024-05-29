@@ -7,9 +7,13 @@ import java.util.ResourceBundle;
 import com.example.statusplusplus.DatabaseModels.Algorithms;
 import com.example.statusplusplus.DatabaseModels.Database;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import static com.example.statusplusplus.DatabaseModels.Algorithms.getExpThreshold;
 
@@ -48,7 +52,7 @@ public class mainGUI {
     private TextArea notes;
 
     @FXML
-    private Button shopOpenButton;
+    private Button taskPageButton;
 
     @FXML
     private Text sta;
@@ -110,7 +114,7 @@ public class mainGUI {
         assert intel != null : "fx:id=\"intel\" was not injected: check your FXML file 'Status++GUI.fxml'.";
         assert level != null : "fx:id=\"level\" was not injected: check your FXML file 'Status++GUI.fxml'.";
         assert notes != null : "fx:id=\"notes\" was not injected: check your FXML file 'Status++GUI.fxml'.";
-        assert shopOpenButton != null : "fx:id=\"shopOpenButton\" was not injected: check your FXML file 'Status++GUI.fxml'.";
+        assert taskPageButton != null : "fx:id=\"shopOpenButton\" was not injected: check your FXML file 'Status++GUI.fxml'.";
         assert sta != null : "fx:id=\"sta\" was not injected: check your FXML file 'Status++GUI.fxml'.";
         assert str != null : "fx:id=\"str\" was not injected: check your FXML file 'Status++GUI.fxml'.";
         assert streak != null : "fx:id=\"streak\" was not injected: check your FXML file 'Status++GUI.fxml'.";
@@ -145,6 +149,14 @@ public class mainGUI {
         staIncrementButton.setVisible(false);
         wisIncrementButton.setVisible(false);
         vitIncrementButton.setVisible(false);
+
+        taskPageButton.setOnAction(event -> {
+            try {
+                navToTaskPage();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     /**
@@ -160,6 +172,29 @@ public class mainGUI {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    private void navToTaskPage(){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/example/statusplusplus/Status++UserAddsTasks.fxml"));
+            Parent p = loader.load();
+
+            UserAddsTasks controller = loader.getController();
+
+            //TODO: Implement the recieve user function so we can set the tasks from the other page
+            //controller.receiveUserID(currUser.getUserID());
+            controller.setMainStage((Stage) taskPageButton.getScene().getWindow());
+
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(p));
+            newStage.setTitle("Add Tasks");
+            newStage.setResizable(false);
+            newStage.show();
+
+        }catch(Exception e){
+            System.out.println("Error navigating to the task page");
+        }
     }
 
     /**

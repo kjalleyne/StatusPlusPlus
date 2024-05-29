@@ -58,6 +58,8 @@ public class UserAddsTasks implements Initializable {
     @FXML
     private TableColumn<TaskWrapper, Boolean> selectCol; // for user to select a task (maybe <Task, Boolean>??)
 
+    private Stage mainStage;
+
     // Initializing Database class
     private final Database db = new Database();
 
@@ -105,6 +107,12 @@ public class UserAddsTasks implements Initializable {
 
     }
 
+
+    public void setMainStage(Stage mainStage){
+        this.mainStage = mainStage;
+    }
+
+
     /**
      * Method to display tasks based on category user selected from combo box
      * @param category takes in category of tasks to display
@@ -148,27 +156,11 @@ public class UserAddsTasks implements Initializable {
     @FXML
     private void goToHomePage() {
 
-        // Trying to load the home page of the application
-        try {
+        Stage stage = (Stage) homeButton.getScene().getWindow();
+        stage.close();
 
-            // Load the FXML file for the home page
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/statusplusplus/Status++GUI.fxml"));
-
-            // Create a new scene with the loaded root node
-            Scene scene = new Scene(root);
-
-            // Get the stage from the home button
-            Stage stage = (Stage) homeButton.getScene().getWindow();
-
-            // Set the new scene on the stage
-            stage.setScene(scene);
-
-            // Set the title of the stage to "Home"
-            stage.setTitle("Home");
-
-        // catch block if the FXML file not found
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(mainStage != null){
+            mainStage.show();
         }
     }
 }

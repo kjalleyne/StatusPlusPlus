@@ -197,7 +197,7 @@ public class UserAddsTasks implements Initializable {
 
     /**
      * Handles the task creation for when a user wants to create a task,
-     * determines the task name, stat category, and exp amount.
+     * determines the task name, stat category, and exp amount, and then updates the database and refreshes the tableview.
      */
     public void handleCreateTask() {
         String selectedStat = (String) statChoice.getSelectionModel().getSelectedItem();

@@ -109,7 +109,12 @@ public class LoginGUI {
             errorLabel.setText("Need to fill all fields in account creation");
             return;
         }
-
+        //Checks if the user has put in too many characters
+        if(usernameInput.length() <= 30 || passwordInput.length() <= 45 || emailInput.length() <= 45){
+            errorLabel.setText("One of the fields has too many characters");
+            return;
+        }
+        
         boolean validUser = databaseManager.checkCredentials(emailInput, passwordInput);
         if (!validUser) {
             System.out.println("Creating account");

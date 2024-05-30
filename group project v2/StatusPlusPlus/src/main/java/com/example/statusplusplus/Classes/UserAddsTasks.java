@@ -12,17 +12,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.scene.text.Text;
@@ -133,7 +128,7 @@ public class UserAddsTasks implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Deselected");
-                handleDeselect();
+                handleDeselectAll();
             }
         });
 
@@ -167,11 +162,14 @@ public class UserAddsTasks implements Initializable {
             if(taskW.isSelected()){
                 // Assign the task to the user since it was selected
                 db.assignUserTask(this.userID, taskW.getTaskId());
+
+                // deselect each of the taskWrapper objects
+                taskW.setSelected(false);
             }
         }
     }
 
-    public void handleDeselect() {
+    public void handleDeselectAll() {
         for(TaskWrapper select1: taskWrapperList) {
             if(select1.isSelected()) {
                 select1.setSelected(false);

@@ -10,6 +10,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * The UserAddsTask page. (USE ONLY IN TESTING!)
+ */
 public class UserAddsTasksDriver extends Application {
 
     @Override

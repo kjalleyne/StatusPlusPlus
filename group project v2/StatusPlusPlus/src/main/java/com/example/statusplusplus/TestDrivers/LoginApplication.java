@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 import static com.example.statusplusplus.DatabaseModels.Algorithms.getExpThreshold;
 
+/**
+ * A file to test the functions we have developed without running the gui.
+ */
 public class LoginApplication {
 
     public static void main(String[] args) throws SQLException {

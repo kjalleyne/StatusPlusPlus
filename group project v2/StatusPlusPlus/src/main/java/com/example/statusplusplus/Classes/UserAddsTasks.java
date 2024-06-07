@@ -12,17 +12,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.scene.text.Text;
@@ -103,12 +98,14 @@ public class UserAddsTasks implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Set the defaults
         statChoice.getItems().add("Strength");
         statChoice.getItems().add("Stamina");
         statChoice.getItems().add("Vitality");
         statChoice.getItems().add("Intelligence");
         statChoice.getItems().add("Wisdom");
 
+        // Set the exp choices they have
         expChoice.getItems().add("30");
         expChoice.getItems().add("40");
         expChoice.getItems().add("50");
@@ -122,11 +119,11 @@ public class UserAddsTasks implements Initializable {
 
         comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newCategory) -> {
             showingCtgyTaskTF.setText("Showing " + newCategory + " Tasks");
-            displayCategory(newCategory);
         });
 
         tableView.setItems(taskWrapperList);
 
+        // Setup the table.
         taskNoCol.setCellValueFactory(new PropertyValueFactory<>("taskId"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("taskName"));
         expGainedCol.setCellValueFactory(new PropertyValueFactory<>("expGained"));
@@ -157,11 +154,14 @@ public class UserAddsTasks implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Deselected");
-                handleDeselect();
+                handleDeselectAll();
             }
         });
 
         createTask.setOnAction(new EventHandler<ActionEvent>() {
+            // Function to handle the clicking of the addTask button. Will check
+            // if anything is empty. Will not add to db if the char limit is exceeded
+            // even though it does not check here.
             @Override
             public void handle(ActionEvent event) {
                 boolean exp = expChoice.getSelectionModel().getSelectedItem() == null;
@@ -175,10 +175,6 @@ public class UserAddsTasks implements Initializable {
                 }
             }
         });
-
-
-        // DELETE LATER - test to get task relation data
-        printAllTasks();
 
         // This will make it so the close button calls the goToHome logic, so that changes are applied to tasks relation
         Platform.runLater(new Runnable() {
@@ -263,11 +259,17 @@ public class UserAddsTasks implements Initializable {
             if(taskW.isSelected()){
                 // Assign the task to the user since it was selected
                 db.assignUserTask(this.userID, taskW.getTaskId());
+
+                // deselect each of the taskWrapper objects
+                taskW.setSelected(false);
             }
         }
     }
 
-    public void handleDeselect() {
+    /**
+     * Deselects all the tasks in the list that are selected, also deselects the TaskWrappers
+     */
+    public void handleDeselectAll() {
         for(TaskWrapper select1: taskWrapperList) {
             if(select1.isSelected()) {
                 select1.setSelected(false);
@@ -275,6 +277,9 @@ public class UserAddsTasks implements Initializable {
         }
     }
 
+    /**
+     * Selects all the tasks in the list that are selected, also deselects the TaskWrappers
+     */
     public void handleSelectAll() {
         for(TaskWrapper select2: taskWrapperList) {
             if(!select2.isSelected()) {
@@ -306,31 +311,7 @@ public class UserAddsTasks implements Initializable {
     }
 
     /**
-     * Method to display tasks based on category user selected from combo box
-     * @param category takes in category of tasks to display
-     */
-    public void displayCategory(String category) {
-
-        // ...
-
-    }
-
-    /**
-     * Action listener for "Confirm Select" button
-     * Adds the checked select boxes of tasks that user wants,
-     * Puts into userTasks relation
-     */
-
-
-    /**
-     * Action listener for "Deselect All" button
-     * Deselects all checked select boxes of tasks that user
-     * has checked.
-     */
-
-
-    /**
-     * DELETE LATER, just to test if the task relation data was grabbed from database
+     * Debugging function to see which tasks were added.
      */
     public void printAllTasks() {
         for (Task task : taskIDs) {

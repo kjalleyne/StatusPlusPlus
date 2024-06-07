@@ -1,12 +1,9 @@
 package com.example.statusplusplus.Classes;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import com.example.statusplusplus.DatabaseModels.Algorithms;
 import com.example.statusplusplus.DatabaseModels.Database;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,18 +12,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import static com.example.statusplusplus.DatabaseModels.Algorithms.getExpThreshold;
 
-
+/**
+ * The mainGUI of our program. The HOME SCREEN!
+ */
 public class mainGUI {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Text skillPointsText;
@@ -107,7 +99,7 @@ public class mainGUI {
     private User currUser;
     private UserStats currUStats;
     private SkillLevels skillLevels;
-    private Database db = new Database();
+    private final Database db = new Database();
     private ArrayList<Task> tasks;
 
     @FXML
@@ -140,18 +132,21 @@ public class mainGUI {
         setupButtonAction(task4button, 4);
         setupButtonAction(task5button, 5);
 
+        // Setup the increment buttons
         setupIncrementButton(strIncrementButton, TaskCategory.STR);
         setupIncrementButton(intIncrementButton, TaskCategory.INT);
         setupIncrementButton(staIncrementButton, TaskCategory.END);
         setupIncrementButton(wisIncrementButton, TaskCategory.WIS);
         setupIncrementButton(vitIncrementButton, TaskCategory.VIT);
 
+        // Hide the buttons until we want to show them
         strIncrementButton.setVisible(false);
         intIncrementButton.setVisible(false);
         staIncrementButton.setVisible(false);
         wisIncrementButton.setVisible(false);
         vitIncrementButton.setVisible(false);
 
+        // Set up the eventHandler for navigating to the task page.
         taskPageButton.setOnAction(event -> {
             try {
                 navToTaskPage();
@@ -176,6 +171,9 @@ public class mainGUI {
         });
     }
 
+    /**
+     * This will just show the UserAddsTask page, along with passing it the userID of the current user.
+     */
     private void navToTaskPage(){
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -189,11 +187,13 @@ public class mainGUI {
             controller.setMainStage((Stage) taskPageButton.getScene().getWindow());
             controller.setMainController(this);
 
+            // Make it APPEAR!
             Stage newStage = new Stage();
             newStage.setScene(new Scene(p));
             newStage.setTitle("Add Tasks");
             newStage.setResizable(false);
             newStage.show();
+
         }catch(Exception e){
             System.out.println("Error navigating to the task page");
         }
@@ -295,6 +295,7 @@ public class mainGUI {
         String experience = (currUStats.getExp() + "/" + threshold);
         exp.setText(experience);
 
+        // Fill in the usersname and stats fields
         username.setText(currUser.getUserName());
         level.setText(Integer.toString(lvl));
         str.setText(Integer.toString(skillLevels.getStrength()));
@@ -303,9 +304,11 @@ public class mainGUI {
         intel.setText(Integer.toString(skillLevels.getIntelligence()));
         sta.setText(Integer.toString(skillLevels.getEndurance()));
 
+        // Fill in the skillpoints
         int skillPoints = currUStats.getSkillPoints();
         skillPointsText.setText(Integer.toString(skillPoints));
 
+        // Show skill leveling up buttons if needed.
         boolean showSkillControls = skillPoints > 0;
         strIncrementButton.setVisible(showSkillControls);
         intIncrementButton.setVisible(showSkillControls);
@@ -313,6 +316,7 @@ public class mainGUI {
         wisIncrementButton.setVisible(showSkillControls);
         vitIncrementButton.setVisible(showSkillControls);
 
+        // Display all the users tasks
         displayTasks();
     }
 

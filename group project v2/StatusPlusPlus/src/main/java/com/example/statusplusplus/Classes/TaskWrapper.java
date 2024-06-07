@@ -3,16 +3,28 @@ package com.example.statusplusplus.Classes;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
+/**
+ * This class plays as a Wrapper of Task. It is used in the UserAddsTasks page.
+ */
 public class TaskWrapper {
 
     private Task task;
     private BooleanProperty selected;
 
+    /**
+     * Constructor for the Wrapper
+     * @param task Task to wrap.
+     */
     public TaskWrapper(Task task) {
         this.task = task;
         this.selected = new SimpleBooleanProperty(false); // default value is false
     }
 
+    // ========================================
+    // Getters and setter only here to appease a function that relates to the JavaFX
+    // checkboxes that tie their state to the TaskWrapper BooleanProperty field.
+    // Basic getters and setters, thus no javaDocs
+    // ========================================
     public Task getTask() {
         return task;
     }

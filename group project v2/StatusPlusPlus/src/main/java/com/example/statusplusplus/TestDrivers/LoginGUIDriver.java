@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 import com.example.statusplusplus.Classes.LoginGUI;
 import com.example.statusplusplus.DatabaseModels.Database;
 
+/**
+ * This file is responsible for launching the application.
+ */
 public class LoginGUIDriver extends Application {
     @Override
     public void start(Stage primaryStage) {
